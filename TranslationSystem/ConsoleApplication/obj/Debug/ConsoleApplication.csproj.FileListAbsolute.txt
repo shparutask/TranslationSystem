@@ -1,0 +1,10 @@
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\bin\Debug\ConsoleApplication.exe.config
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\bin\Debug\ConsoleApplication.exe
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\bin\Debug\ConsoleApplication.pdb
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\bin\Debug\LearnPredictLib.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\bin\Debug\TranslationLib.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\bin\Debug\LearnPredictLib.pdb
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\bin\Debug\TranslationLib.pdb
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.exe
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.pdb
