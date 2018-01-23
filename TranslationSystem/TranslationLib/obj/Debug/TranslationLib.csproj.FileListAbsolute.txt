@@ -3,3 +3,8 @@ C:\Users\Sonya\Desktop\ВКР\TranslationSystem\TranslationLib\bin\Debug\Transla
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\TranslationLib\bin\Debug\TranslationLib.pdb
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.dll
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.pdb
+C:\Users\Sonya\Desktop\TranslationSystem\TranslationSystem\TranslationLib\bin\Debug\TranslationLib.dll
+C:\Users\Sonya\Desktop\TranslationSystem\TranslationSystem\TranslationLib\bin\Debug\TranslationLib.pdb
+C:\Users\Sonya\Desktop\TranslationSystem\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\TranslationSystem\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.dll
+C:\Users\Sonya\Desktop\TranslationSystem\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.pdb
