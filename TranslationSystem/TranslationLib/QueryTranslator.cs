@@ -1,22 +1,16 @@
 ﻿using System.Collections.Generic;
-
 //@"Data Source=SOPHIESHPA\SQLEXPRESS;Initial Catalog=MIGRATION_EXPERT;Integrated Security=True"
 
 namespace TranslationLib
 {
     class QueryTranslator
     {
-        struct Mark
-        {
-            public string token;
-            public Marks mark;
-        }
-
-        enum Marks
+        enum Mark
         {
             Value,
-            Object
-        };
+            Obj,
+            Prop
+        }
 
         dbGraph m_DB;
 
@@ -25,76 +19,41 @@ namespace TranslationLib
             m_DB = new dbGraph(address);
         }
 
-        public string FormalQuery(string question)
+        private string[] getTokens(string question)
         {
-            //List<Mark> markedTokens = marking(parsing(question));
-
-            return "";
+            return question.Split(' ');
         }
 
-        private List<string> parsing(string question)
+        private Dictionary<Mark, string> tagging(string[] tokens)
         {
-            int i = 0;
-            List<string> tokens = new List<string>();
-            while (i <= question.Length)
+            Dictionary<Mark, string> tags = new Dictionary<Mark, string>();
+            foreach (string t in tokens)
             {
-                string s = "";
-                while (string.Equals(question[i], " "))
-                {
-                    s += question[i];
-                    i++;
-                }
-                i++;
-                tokens.Add(s);
+                bool IsMarked = false;
+                if (tablesContains(t) && !IsMarked) { tags.Add(Mark.Obj, t); IsMarked = true; }
+                if (attrContains(t) && !IsMarked) { tags.Add(Mark.Value, t); IsMarked = true; }
+                if (!IsMarked) tags.Add(Mark.Value, t);
             }
-            return tokens;
+            return tags;
         }
 
-        private List<Mark> marking(List<string> words)
+        private bool tablesContains(string table)
         {
-            List<Mark> markedTokens = new List<Mark>();
-            bool wasBroken = false;
-            foreach (string s in words)
+            foreach (Table t in m_DB.Tables_graph)
             {
-                wasBroken = false;
-                foreach (Table t in m_DB.Tables_graph)
-                    if (t.Name == s)
-                    {
-                        markedTokens.Add(new Mark { token = s, mark = Marks.Object });
-                        wasBroken = true;
-                        break;
-                    }
-                if(!wasBroken) markedTokens.Add(new Mark { token = s, mark = Marks.Value });
+                if (t.Name == table) return true;
             }
-            return markedTokens;
+            return false;
         }
 
-        private string abstractSemanticInterpretation(List<Mark> markedTokens)
+        private bool attrContains(string property)
         {
-            string interpret = "";
-            foreach (Mark s in markedTokens)
+            foreach (Table t in m_DB.Tables_graph)
             {
-                if (s.mark == Marks.Object)
-                {
-                    interpret += "(x type " + s.token + ")\n";
-                }
-                else
-                {
-                    interpret += "(x " + s.token + "?v)\n";
-                }
+                foreach (string col in t.Columns)
+                    if (col == property) return true;
             }
-            return interpret += "\b";
-        }
-
-        private string concreteSemanticInterpretation(string abst)
-        {
-
-            return "";
-        }
-
-        private string ranking(string concrete)
-        {
-            return "";
+            return false;
         }
     }
 }

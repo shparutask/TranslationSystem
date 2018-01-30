@@ -8,23 +8,5 @@ namespace TranslationLib
 {
     class QueryExecutor
     {
-       public struct Query
-        {
-            public string select;
-            public string from;
-            public string where;
-            public string group;
-            public string having;
-        }
-
-        public QueryExecutor(string SqlQuery)
-        {
-
-        }
-
-        public void ExecuteQuery(Query sql)
-        {
-
-        }
     }
 }
