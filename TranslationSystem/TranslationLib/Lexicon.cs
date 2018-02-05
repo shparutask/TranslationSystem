@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TranslationLib
 {
-    class QueryProcessor
+    class Lexicon
     {
     }
 }
