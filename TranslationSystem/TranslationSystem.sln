@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationLib", "Translati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnPredictLib", "LearnPredictLib\LearnPredictLib.csproj", "{9D816749-9B31-4222-98A3-3A475247CE95}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NQS1", "NQS1\NQS1.pyproj", "{9CC3975E-7615-4B74-BBC6-D7C5B14124AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{9D816749-9B31-4222-98A3-3A475247CE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D816749-9B31-4222-98A3-3A475247CE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D816749-9B31-4222-98A3-3A475247CE95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC3975E-7615-4B74-BBC6-D7C5B14124AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC3975E-7615-4B74-BBC6-D7C5B14124AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

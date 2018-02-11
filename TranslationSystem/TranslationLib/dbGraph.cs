@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace TranslationLib
 {
-    internal class Table
+    public class Table
     {
         Dictionary<int, Table> _fK = new Dictionary<int, Table>();
 
@@ -20,7 +20,7 @@ namespace TranslationLib
         }
     }
 
-    internal class dbGraph
+    public class dbGraph
     {
         public Table[] Tables_graph { get; }
 

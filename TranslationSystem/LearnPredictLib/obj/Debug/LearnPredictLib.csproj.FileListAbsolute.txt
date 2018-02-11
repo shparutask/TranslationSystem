@@ -2,3 +2,8 @@ C:\Users\Sonya\Desktop\ВКР\TranslationSystem\LearnPredictLib\bin\Debug\LearnP
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\LearnPredictLib\bin\Debug\LearnPredictLib.pdb
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\LearnPredictLib\obj\Debug\LearnPredictLib.dll
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\LearnPredictLib\obj\Debug\LearnPredictLib.pdb
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\LearnPredictLib\bin\Debug\LearnPredictLib.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\LearnPredictLib\bin\Debug\LearnPredictLib.pdb
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\LearnPredictLib\obj\Debug\LearnPredictLib.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\LearnPredictLib\obj\Debug\LearnPredictLib.pdb
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\LearnPredictLib\obj\Debug\LearnPredictLib.csprojResolveAssemblyReference.cache
