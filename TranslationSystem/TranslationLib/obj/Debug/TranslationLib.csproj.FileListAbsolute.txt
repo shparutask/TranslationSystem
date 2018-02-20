@@ -3,8 +3,20 @@ C:\Users\Sonya\Desktop\ВКР\TranslationSystem\TranslationLib\bin\Debug\Transla
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\TranslationLib\bin\Debug\TranslationLib.pdb
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.dll
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.pdb
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\TranslationLib.dll.config
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\TranslationLib.dll
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\TranslationLib.pdb
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.Modules.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.SQLite.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.Wpf.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\Microsoft.Dynamic.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\Microsoft.Scripting.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\Microsoft.Scripting.Metadata.dll
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.xml
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.Modules.xml
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.SQLite.xml
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.Wpf.xml
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.dll
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.pdb
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.csprojResolveAssemblyReference.cache
