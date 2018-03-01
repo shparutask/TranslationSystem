@@ -17,6 +17,6 @@ C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\Translat
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.Modules.xml
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.SQLite.xml
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\bin\Debug\IronPython.Wpf.xml
+C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.csprojResolveAssemblyReference.cache
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.dll
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.pdb
-C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.csprojResolveAssemblyReference.cache

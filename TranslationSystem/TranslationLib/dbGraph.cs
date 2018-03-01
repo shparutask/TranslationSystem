@@ -95,7 +95,7 @@ namespace TranslationLib
                          и означает номер столбца в таблице(начинается с 0)
                          */
                         {
-                            values.Add(new ValueTag { value = dr.GetValue(i).ToString().Trim(), column = dr.GetName(i).ToString().Trim() });
+                            values.Add(new ValueTag { Value = dr.GetValue(i).ToString().Trim(), Column = table+ "." + dr.GetName(i).ToString().Trim() });
                         }
                     }
                 }

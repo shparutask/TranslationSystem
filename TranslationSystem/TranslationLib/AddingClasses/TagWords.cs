@@ -1,25 +1,21 @@
 ﻿namespace TranslationLib
 {
-    class TagWords
+    public class TagWords
     {
-        public string word { get; set; }
-        public Tags tag { get; set; }
+        public string Word { get; set; }
+        public Tag Category { get; set; }
+        public string Tag { get; set; }
     }
 
-    public enum Tags
+    public enum Tag
     {
-        Table, 
-        Column,
-        Value,
-        AR,
-        AND,
-        BEs,
-        BEp,
-        DOs,
-        DOp,
-        WHO,
-        WHICH,
-        Q,
-        Another
+       Value,
+       Object
+    }
+
+    public class ValueTag
+    {
+        public string Value { get; set; }
+        public string Column { get; set; }
     }
 }

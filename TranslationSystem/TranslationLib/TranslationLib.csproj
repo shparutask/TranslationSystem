@@ -72,16 +72,12 @@
     <Compile Include="Lexicon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AddingClasses\TagWords.cs" />
-    <Compile Include="AddingClasses\ValueTag.cs" />
     <Compile Include="Translation\AbstractSemanticInterpretation.cs" />
     <Compile Include="Translation\Parser.cs" />
     <Compile Include="Translation\Tagging.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PythonNQS\agreement.py" />
-    <Content Include="PythonNQS\pos_tagging.py" />
-    <Content Include="PythonNQS\semantics.py" />
-    <Content Include="PythonNQS\statements.py" />
+    <Content Include="PythonNQS\start.py" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
