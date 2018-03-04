@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
 
 namespace TranslationLib
 {
@@ -11,11 +9,6 @@ namespace TranslationLib
         List<ValueTag> value_tags;
         List<string>[] language_tags = new List<string>[] { new List<string>() { },
                                                             new List<string>() { } };
-
-        public Lexicon()
-        {
-
-        }
 
         public Lexicon(dbGraph g)
         {
@@ -36,7 +29,6 @@ namespace TranslationLib
             string[] q = question.Split();
             foreach (var w in q)
             {
-                string tag = "";
                 foreach (var list in language_tags)
                     foreach (var name in list)
                         if (name == w)
@@ -65,14 +57,9 @@ namespace TranslationLib
             Lx.Add(word);
         }
 
-        public string noun_stem(string s)
+        public List<TagWords> getAll()
         {
-            ScriptEngine engine = Python.CreateEngine();
-            ScriptScope scope = engine.CreateScope();
-            engine.ExecuteFile("../../../TranslationLib/PythonNQS/start.py", scope);
-            dynamic function = scope.GetVariable("noun_stem");
-            dynamic result = function(s);
-            return result.ToString();
+            return Lx;
         }
     }
 }

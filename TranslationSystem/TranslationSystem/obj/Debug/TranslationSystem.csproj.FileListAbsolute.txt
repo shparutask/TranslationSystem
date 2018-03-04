@@ -25,3 +25,12 @@ C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\Translat
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.exe
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.pdb
 C:\Users\Sonya\Desktop\ВКР\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\bin\Debug\TranslationSystem.exe.config
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\bin\Debug\TranslationSystem.exe
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\bin\Debug\TranslationSystem.pdb
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.Form1.resources
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.Properties.Resources.resources
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.csproj.GenerateResource.Cache
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.exe
+C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.pdb

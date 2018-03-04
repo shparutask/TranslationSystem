@@ -9,8 +9,12 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new Lexicon().noun_stem("References"));
-            Console.ReadKey();
+            Grammar g = new Grammar();
+
+            Console.WriteLine(g.noun_stem("ducks"));
+            
+
+            Console.Read();
         }
     }
 }
