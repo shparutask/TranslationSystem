@@ -23,12 +23,12 @@ namespace TranslationLib
     public class dbGraph
     {
         public Table[] Tables_graph { get; }
-        private SqlConnection sql_conn;
+        string address;
 
         public dbGraph(string address)
         {
-            sql_conn = new SqlConnection(address);
-            using (sql_conn)
+            this.address = address;
+            using (SqlConnection sql_conn = new SqlConnection(address))
             {
                 sql_conn.Open();
                 string tableName = "";
@@ -76,26 +76,30 @@ namespace TranslationLib
         public List<ValueTag> ReturnDataValues(string table)
         {
             List<ValueTag> values = new List<ValueTag>();
-            using (SqlCommand cmd = new SqlCommand("Select * From " + table, sql_conn))
+            using (SqlConnection sql_conn = new SqlConnection(address))
             {
-                /*Метод ExecuteReader() класса SqlCommand возврашает
-                 объект типа SqlDataReader, с помошью которого мы можем
-                 прочитать все строки, возврашенные в результате выполнения запроса
-                 CommandBehavior.CloseConnection - закрываем соединение после запроса
-                 */
-                sql_conn.Open();
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand("Select * From " + table, sql_conn))
                 {
-                    //цикл по всем столбцам полученной в результате запроса таблицы
-                    while (dr.Read())
+                    /*Метод ExecuteReader() класса SqlCommand возврашает
+                     объект типа SqlDataReader, с помошью которого мы можем
+                     прочитать все строки, возврашенные в результате выполнения запроса
+                     CommandBehavior.CloseConnection - закрываем соединение после запроса
+                     */
+
+                    sql_conn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
-                        for (int i = 0; i < dr.FieldCount; i++)
-                        /*метод GetName() класса SqlDataReader позволяет получить имя столбца
-                         по номеру, который передается в качестве параметра, данному методу
-                         и означает номер столбца в таблице(начинается с 0)
-                         */
+                        //цикл по всем столбцам полученной в результате запроса таблицы
+                        while (dr.Read())
                         {
-                            values.Add(new ValueTag { Value = dr.GetValue(i).ToString().Trim(), Column = table+ "." + dr.GetName(i).ToString().Trim() });
+                            for (int i = 0; i < dr.FieldCount; i++)
+                            /*метод GetName() класса SqlDataReader позволяет получить имя столбца
+                             по номеру, который передается в качестве параметра, данному методу
+                             и означает номер столбца в таблице(начинается с 0)
+                             */
+                            {
+                                values.Add(new ValueTag { Value = dr.GetValue(i).ToString().Trim(), Column = table + "." + dr.GetName(i).ToString().Trim() });
+                            }
                         }
                     }
                 }

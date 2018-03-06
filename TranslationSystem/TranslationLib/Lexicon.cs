@@ -4,11 +4,11 @@ namespace TranslationLib
 {
     public class Lexicon
     {
-        List<TagWords> Lx = new List<TagWords>();
+        public List<ValueTag> value_tags { get; set; }
+        public List<string>[] Language_tags {get { return language_tags; } }
 
-        List<ValueTag> value_tags;
-        List<string>[] language_tags = new List<string>[] { new List<string>() { },
-                                                            new List<string>() { } };
+        List<string>[] language_tags = new List<string>[] { new List<string>() { },                                                            new List<string>() { } };
+        List<TaggedWord> lx = new List<TaggedWord>();
 
         public Lexicon(dbGraph g)
         {
@@ -17,49 +17,22 @@ namespace TranslationLib
             {
                 value_tags = g.ReturnDataValues(g.Tables_graph[i].Name);
                 i++;
-                foreach (var c in g.Tables_graph[i].Columns)
-                {
-                    i++;
-                }
             }
         }
 
-        public void Tagging(string question, Lexicon lx)
+        public void Add(TaggedWord word)
         {
-            string[] q = question.Split();
-            foreach (var w in q)
-            {
-                foreach (var list in language_tags)
-                    foreach (var name in list)
-                        if (name == w)
-                        {
-                            lx.Add(new TagWords { Word = w, Category = Tag.Object, Tag = list[0] });
-                            continue;
-                        }
-                foreach (var s in lx.value_tags)
-                {
-                    if (s.Column == w)
-                    {
-                        lx.Add(new TagWords { Word = w, Category = Tag.Object, Tag = s.Column });
-                        continue;
-                    }
-                    if (s.Value == w)
-                    {
-                        lx.Add(new TagWords { Word = w, Category = Tag.Value, Tag = s.Column });
-                        continue;
-                    }
-                }
-            }
+            lx.Add(word);
         }
 
-        public void Add(TagWords word)
+        public List<TaggedWord> getAll()
         {
-            Lx.Add(word);
+            return lx;
         }
 
-        public List<TagWords> getAll()
+        public void changeLx(List<TaggedWord> new_wlist)
         {
-            return Lx;
+            lx = new_wlist;
         }
     }
 }

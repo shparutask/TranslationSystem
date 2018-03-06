@@ -1,10 +1,13 @@
-﻿namespace TranslationLib
+﻿using System.Collections.Generic;
+
+namespace TranslationLib
 {
-    public class TagWords
+    public class TaggedWord
     {
         public string Word { get; set; }
         public Tag Category { get; set; }
-        public string Tag { get; set; }
+        public string Tag_TableColumn { get; set; }
+        public List<string> POSTags { get; set; }
     }
 
     public enum Tag
