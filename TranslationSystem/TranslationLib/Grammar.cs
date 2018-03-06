@@ -9,32 +9,17 @@ namespace TranslationLib
     {
         public string[] Rules { get { return rules; } }
 
-        string[] rules = new string[] {
-            "S  -> WHAT QP OF NP WITH NP QP  | WHAT QP OF NP | WHAT QP OF NP ABOUT NP | WHOSE NP QP | WHOSE NP | WHOSE NP OF NP",
-            "QP -> VP",
-            "VP -> I | T NP | BE A | BE NP | VP AND VP | LIKE NP",
-            "NP  -> P | AR Nom | Nom",
-            "Nom -> AN | AN Rel",
-            "AN  -> N | A AN",
-            "Rel  -> WHO VP | NP T",
-            "N  -> 'Ns' | 'Np'",
-            "I  -> 'Is' | 'Ip'",
-            "T  -> 'Ts' | 'Tp'",
-            "A  -> 'A'",
-            "P  -> 'P'",
-            "BE  -> 'BEs' | 'BEp'",
-            "AR -> 'AR'",
-            "WHO -> 'WHO'",
-            "WHAT -> 'WHICH' | 'WHAT'",
-            "AND   -> 'AND'",
-            "OR -> 'OR'",
-            "OF -> 'OF'",
-            "LIKE -> 'LIKE'",
-            "WITH -> 'WITH'",
-            "ABOUT -> 'ABOUT'",
-            "WHOSE -> 'WHOSE' | 'WHO HAS'" };
+        private string IsFunction(string w)
+        {
+            for (int i = 0; i < function_words_tags.GetLength(1); i++)
+                for (int j = 0; j < function_words_tags.GetLength(2); j++)
+                {
+                    if (w == function_words_tags[i][j]) return function_words_tags[i][j];
+                }
+            return "";
+        }
 
-        public string noun_stem(string x)
+        private string noun_stem(string x)
         {
             ScriptEngine engine = Python.CreateEngine();
             ScriptScope scope = engine.CreateScope();
@@ -44,22 +29,6 @@ namespace TranslationLib
             dynamic result = function(x);
             return result.ToString();
         }
-
-        string[][] function_words_tags = new string[][] {
-           new string[] {"BEs", "is", "was" },
-           new string[] { "BEp", "are", "were" },
-           new string[] {"AR", "a", "an" },
-           new string[] {"AND", "and"  },
-           new string[] {"WHO", "Who" },
-           new string[] {"WHICH", "Which" },
-           new string[] {"WHAT" , "What" },
-           new string[] {"OR", "or" },
-           new string[] {"OF", "of"},
-           new string[] {"LIKE", "like"},
-           new string[] {"WITH", "with"},
-           new string[] {"ABOUT", "about"},
-           new string[] { "WHOSE", "Whose" }
-};
 
         public string verb_stem(string x)
         {
@@ -78,12 +47,12 @@ namespace TranslationLib
                     string stderr = process.StandardError.ReadToEnd(); // Here are the exceptions from our Python script                   
                     string result = reader.ReadToEnd(); // Here is the result of StdOut(for example: print "test")
 
-                    return result.ToString();
+                    return result.Substring(0, result.Length - 2);
                 }
             }
-        }          
+        }
 
-        public void POS_Tagging(Lexicon lx)
+        private void POS_Tagging(Lexicon lx)
         {
             /* Grammar for the statement language is:
             #   S  -> P is AR Ns | P is A | P Is | P Ts P
@@ -93,6 +62,12 @@ namespace TranslationLib
             {
                 if ('A' <= w.Word[0] && w.Word[0] <= 'Z')
                     w.POSTags.Add("P");
+
+                string f = IsFunction(w.Word);
+                if (!string.IsNullOrEmpty(f))
+                {
+                    w.POSTags.Add(f);
+                }
             }
 
             if (wlist[1].Word == "is")
@@ -120,5 +95,47 @@ namespace TranslationLib
 
             lx.changeLx(wlist);
         }
+
+        string[] rules = new string[] {
+            "S  -> WHAT QP OF NP WITH NP QP  | WHAT QP OF NP | WHAT QP OF NP ABOUT NP | WHOSE NP QP | WHOSE NP | WHOSE NP OF NP",
+            "QP -> VP",
+            "VP -> I | T NP | BE A | BE NP | VP AND VP | LIKE NP",
+            "NP  -> P | AR Nom | Nom",
+            "Nom -> AN | AN Rel",
+            "AN  -> N | A AN",
+            "Rel  -> WHO VP | NP T",
+            "N  -> 'Ns' | 'Np'",
+            "I  -> 'Is' | 'Ip'",
+            "T  -> 'Ts' | 'Tp'",
+            "A  -> 'A'",
+            "P  -> 'P'",
+            "BE  -> 'BEs' | 'BEp'",
+            "AR -> 'AR'",
+            "WHO -> 'WHO'",
+            "WHAT -> 'WHICH' | 'WHAT'",
+            "AND   -> 'AND'",
+            "OR -> 'OR'",
+            "OF -> 'OF'",
+            "LIKE -> 'LIKE'",
+            "WITH -> 'WITH'",
+            "ABOUT -> 'ABOUT'",
+            "WHOSE -> 'WHOSE'"
+        };
+
+        string[][] function_words_tags = new string[][] {
+           new string[] {"BEs", "is", "was" },
+           new string[] { "BEp", "are", "were" },
+           new string[] {"AR", "a", "an" },
+           new string[] {"AND", "and"  },
+           new string[] {"WHO", "Who" },
+           new string[] {"WHICH", "Which" },
+           new string[] {"WHAT" , "What" },
+           new string[] {"OR", "or" },
+           new string[] {"OF", "of"},
+           new string[] {"LIKE", "like"},
+           new string[] {"WITH", "with"},
+           new string[] {"ABOUT", "about"},
+           new string[] { "WHOSE", "Whose" }
+};
     }
 }
