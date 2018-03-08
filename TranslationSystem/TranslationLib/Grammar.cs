@@ -2,14 +2,26 @@
 using Microsoft.Scripting.Hosting;
 using System.Diagnostics;
 using System.IO;
+using System.Collections.Generic;
 
 namespace TranslationLib
 {
     public class Grammar
     {
-        public string[] Rules { get { return rules; } }
+        public List<Rule> Rules
+        {
+            get
+            {
+                var r = new List<Rule>();
+                foreach (var s in rules)
+                {
+                    r.Add(new Rule(s));
+                }
+                return r;
+            }
+        }
 
-        private string IsFunction(string w)
+        private string isFunction(string w)
         {
             for (int i = 0; i < function_words_tags.GetLength(1); i++)
                 for (int j = 0; j < function_words_tags.GetLength(2); j++)
@@ -30,7 +42,7 @@ namespace TranslationLib
             return result.ToString();
         }
 
-        public string verb_stem(string x)
+        private string verb_stem(string x)
         {
             var fileName = "C:/Users/Sonya/Desktop/VCR/TranslationSystem_git/TranslationSystem/TranslationLib/verb_stem.py";
             ProcessStartInfo start = new ProcessStartInfo(@"C:\Users\Sonya\AppData\Local\Programs\Python\Python36\python.exe", fileName);
@@ -52,7 +64,7 @@ namespace TranslationLib
             }
         }
 
-        private void POS_Tagging(Lexicon lx)
+        public void POS_Tagging(Lexicon lx)
         {
             /* Grammar for the statement language is:
             #   S  -> P is AR Ns | P is A | P Is | P Ts P
@@ -63,7 +75,7 @@ namespace TranslationLib
                 if ('A' <= w.Word[0] && w.Word[0] <= 'Z')
                     w.POSTags.Add("P");
 
-                string f = IsFunction(w.Word);
+                string f = isFunction(w.Word);
                 if (!string.IsNullOrEmpty(f))
                 {
                     w.POSTags.Add(f);
@@ -97,23 +109,23 @@ namespace TranslationLib
         }
 
         string[] rules = new string[] {
-            "S  -> WHAT QP OF NP WITH NP QP  | WHAT QP OF NP | WHAT QP OF NP ABOUT NP | WHOSE NP QP | WHOSE NP | WHOSE NP OF NP",
+            "S -> WHAT QP OF NP WITH NP QP | WHAT QP OF NP | WHAT QP OF NP ABOUT NP | WHOSE NP QP | WHOSE NP | WHOSE NP OF NP",
             "QP -> VP",
             "VP -> I | T NP | BE A | BE NP | VP AND VP | LIKE NP",
-            "NP  -> P | AR Nom | Nom",
+            "NP -> P | AR Nom | Nom",
             "Nom -> AN | AN Rel",
-            "AN  -> N | A AN",
-            "Rel  -> WHO VP | NP T",
-            "N  -> 'Ns' | 'Np'",
-            "I  -> 'Is' | 'Ip'",
-            "T  -> 'Ts' | 'Tp'",
-            "A  -> 'A'",
-            "P  -> 'P'",
-            "BE  -> 'BEs' | 'BEp'",
+            "AN -> N | A AN",
+            "Rel -> WHO VP | NP T",
+            "N -> 'Ns' | 'Np'",
+            "I -> 'Is' | 'Ip'",
+            "T -> 'Ts' | 'Tp'",
+            "A -> 'A'",
+            "P -> 'P'",
+            "BE -> 'BEs' | 'BEp'",
             "AR -> 'AR'",
             "WHO -> 'WHO'",
             "WHAT -> 'WHICH' | 'WHAT'",
-            "AND   -> 'AND'",
+            "AND -> 'AND'",
             "OR -> 'OR'",
             "OF -> 'OF'",
             "LIKE -> 'LIKE'",
@@ -136,6 +148,6 @@ namespace TranslationLib
            new string[] {"WITH", "with"},
            new string[] {"ABOUT", "about"},
            new string[] { "WHOSE", "Whose" }
-};
+           };
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Translation
     {
-        public void Tagging_Cat(string question, Lexicon lx)
+        private void Tagging_Cat(string question, Lexicon lx)
         {
             string[] q = question.Split();
             bool IsAdded = false;
@@ -39,7 +39,14 @@
             }
         }
 
-        public void Parsing(string question, Lexicon lx)
+        private ParseTree Parsing(Lexicon lx)
+        {
+            Grammar g = new Grammar();
+            g.POS_Tagging(lx);
+            return new ParseTree(lx, g);
+        }
+
+        private void AbstractSemanticInterpetation(ParseTree tree)
         {
 
         }
