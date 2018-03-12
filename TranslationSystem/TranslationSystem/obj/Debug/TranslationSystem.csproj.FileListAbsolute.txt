@@ -34,3 +34,6 @@ C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\Translation
 C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.csproj.GenerateResource.Cache
 C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.exe
 C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.pdb
+C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationSystem\bin\Debug\TranslationSystem.exe.config
+C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.exe
+C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationSystem\obj\Debug\TranslationSystem.pdb

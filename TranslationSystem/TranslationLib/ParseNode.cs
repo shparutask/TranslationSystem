@@ -1,8 +1,11 @@
-﻿namespace TranslationLib
+﻿using System.Collections.Generic;
+
+namespace TranslationLib
 {
    public class ParseNode
     {
-        public ParseNode children;
+        public List<ParseNode> children;
         public string value;
+        public TaggedWord word;
     }
 }

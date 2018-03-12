@@ -7,10 +7,10 @@ namespace TranslationLib
 {
     public class Table
     {
-        Dictionary<int, Table> _fK = new Dictionary<int, Table>();
+        Dictionary<int, string> _fK = new Dictionary<int, string>();
 
         public string[] Columns { get; }
-        public Dictionary<int, Table> FK { get { return _fK; } set { if (_fK.Count == 0) _fK = value; } }
+        public Dictionary<int, string> FK { get { return _fK; } set { if (_fK.Count == 0) _fK = value; } }
         public string Name { get; }
 
         public Table(string[] columns, string name)
@@ -52,10 +52,10 @@ namespace TranslationLib
                     Tables_graph[i] = new Table(columns, tableName);
                 }
 
-                Dictionary<int, Table> foreignKeys;
+                Dictionary<int, string> foreignKeys;
                 foreach (Table t in Tables_graph)
                 {
-                    foreignKeys = new Dictionary<int, Table>();
+                    foreignKeys = new Dictionary<int, string>();
                     var keys = sql_conn.CreateCommand();
                     keys.CommandText = "select keys.constraint_column_id, keys.parent_column_id,  secound.name from sys.foreign_key_columns keys join sys.tables main on main.object_id = keys.parent_object_id join sys.tables secound on secound.object_id = keys.referenced_object_id where main.name = '" + t.Name + "'";
                     var m_keys = keys.ExecuteReader();
@@ -64,7 +64,7 @@ namespace TranslationLib
                         foreach (Table t1 in Tables_graph)
                         {
                             if (m_keys[2].ToString() == t1.Name)
-                                foreignKeys.Add((int)m_keys[1], t1);
+                                foreignKeys.Add((int)m_keys[0], t1 + "." + m_keys[1].ToString());
                         }
                     }
                     t.FK = foreignKeys;

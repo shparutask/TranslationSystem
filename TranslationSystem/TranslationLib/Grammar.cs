@@ -21,6 +21,16 @@ namespace TranslationLib
             }
         }
 
+        public string TopLevelRule(ParseTree tree)
+        {
+            var rights = "";
+            foreach (var c in tree.root.children)
+            {
+                rights = rights + c.value + "|";
+            }
+            return tree.root.value + " -> " + rights;
+        }
+
         private string isFunction(string w)
         {
             for (int i = 0; i < function_words_tags.GetLength(1); i++)
@@ -109,9 +119,8 @@ namespace TranslationLib
         }
 
         string[] rules = new string[] {
-            "S -> WHAT QP OF NP WITH NP QP | WHAT QP OF NP | WHAT QP OF NP ABOUT NP | WHOSE NP QP | WHOSE NP | WHOSE NP OF NP",
-            "QP -> VP",
-            "VP -> I | T NP | BE A | BE NP | VP AND VP | LIKE NP",
+            "S -> WHAT VP OF NP OF NP VP | WHAT VP OF NP | WHAT VP OF NP VP| WHOSE NP VP",
+            "VP -> I | T NP | BE A | BE NP | VP AND VP | WITH NP LIKE NP | ABOUT NP"  ,
             "NP -> P | AR Nom | Nom",
             "Nom -> AN | AN Rel",
             "AN -> N | A AN",
@@ -137,7 +146,7 @@ namespace TranslationLib
         string[][] function_words_tags = new string[][] {
            new string[] {"BEs", "is", "was" },
            new string[] { "BEp", "are", "were" },
-           new string[] {"AR", "a", "an" },
+           new string[] {"AR", "a", "an", "the" },
            new string[] {"AND", "and"  },
            new string[] {"WHO", "Who" },
            new string[] {"WHICH", "Which" },
