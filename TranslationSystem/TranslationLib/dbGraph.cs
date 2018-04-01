@@ -5,12 +5,18 @@ using System.Collections.Generic;
 
 namespace TranslationLib
 {
+    public struct ForeignKey
+    {
+        public Table t;
+        public string column;
+    }
+
     public class Table
     {
-        Dictionary<int, string> _fK = new Dictionary<int, string>();
+        Dictionary<string, ForeignKey> _fK = new Dictionary<string, ForeignKey>();
 
         public string[] Columns { get; }
-        public Dictionary<int, string> FK { get { return _fK; } set { if (_fK.Count == 0) _fK = value; } }
+        public Dictionary<string, ForeignKey> FK { get { return _fK; } set { if (_fK.Count == 0) _fK = value; } }
         public string Name { get; }
 
         public Table(string[] columns, string name)
@@ -22,7 +28,7 @@ namespace TranslationLib
 
     public class dbGraph
     {
-        public Table[] Tables_graph { get; }
+        public List<Table> Tables_graph { get; }
         string address;
 
         public dbGraph(string address)
@@ -34,37 +40,42 @@ namespace TranslationLib
                 string tableName = "";
                 string[] columns;
                 DataTable allTablesSchemaTable = sql_conn.GetSchema("Tables");
-                Tables_graph = new Table[allTablesSchemaTable.Rows.Count];
-                for (int i = 0; i < Tables_graph.Length; i++)
+                Tables_graph = new List<Table>();
+                for (int i = 0; i < allTablesSchemaTable.Rows.Count; i++)
                 {
                     String[] columnRestrictions = new String[4];
                     tableName = allTablesSchemaTable.Rows[i].ItemArray[allTablesSchemaTable.Columns[2].Ordinal].ToString();
-                    columnRestrictions[2] = tableName;
-                    DataTable columnsTable = sql_conn.GetSchema("Columns", columnRestrictions);
-
-                    columns = new string[columnsTable.Rows.Count];
-                    int k = 0;
-                    foreach (DataRow r in columnsTable.Rows)
+                    if (tableName != "sysdiagrams")
                     {
-                        columns[k] = r.ItemArray[columnsTable.Columns[3].Ordinal].ToString();
-                        k++;
+                        columnRestrictions[2] = tableName;
+                        DataTable columnsTable = sql_conn.GetSchema("Columns", columnRestrictions);
+
+                        columns = new string[columnsTable.Rows.Count];
+                        int k = 0;
+                        foreach (DataRow r in columnsTable.Rows)
+                        {
+                            columns[k] = r.ItemArray[columnsTable.Columns[3].Ordinal].ToString();
+                            k++;
+                        }
+                        Tables_graph.Add(new Table(columns, tableName));
                     }
-                    Tables_graph[i] = new Table(columns, tableName);
                 }
 
-                Dictionary<int, string> foreignKeys;
+                Dictionary<string, ForeignKey> foreignKeys;
                 foreach (Table t in Tables_graph)
                 {
-                    foreignKeys = new Dictionary<int, string>();
+                    foreignKeys = new Dictionary<string, ForeignKey>();
                     var keys = sql_conn.CreateCommand();
-                    keys.CommandText = "select keys.constraint_column_id, keys.parent_column_id,  secound.name from sys.foreign_key_columns keys join sys.tables main on main.object_id = keys.parent_object_id join sys.tables secound on secound.object_id = keys.referenced_object_id where main.name = '" + t.Name + "'";
+                    keys.CommandText = "select col.name, f_col.name, secound.name from sys.foreign_key_columns keys join sys.tables main on main.object_id = keys.parent_object_id join sys.tables secound on secound.object_id = keys.referenced_object_id join sys.columns f_col on keys.parent_object_id = f_col.object_id and f_col.column_id = keys.parent_column_id join sys.columns col on keys.referenced_object_id = col.object_id and col.column_id = keys.referenced_column_id where main.name = '" + t.Name + "'";
                     var m_keys = keys.ExecuteReader();
                     while (m_keys.Read())
                     {
                         foreach (Table t1 in Tables_graph)
                         {
-                            if (m_keys[2].ToString() == t1.Name)
-                                foreignKeys.Add((int)m_keys[0], t1 + "." + m_keys[1].ToString());
+                            if (!foreignKeys.ContainsKey(m_keys[1].ToString()) && m_keys[2].ToString() == t1.Name)
+                            {
+                                foreignKeys.Add(m_keys[1].ToString(), new ForeignKey { t = t1, column = m_keys[0].ToString() });
+                            }
                         }
                     }
                     t.FK = foreignKeys;
@@ -73,32 +84,36 @@ namespace TranslationLib
             }
         }
 
-        public List<ValueTag> ReturnDataValues(string table)
+        public List<ValueTag> ReturnDataValues()
         {
             List<ValueTag> values = new List<ValueTag>();
             using (SqlConnection sql_conn = new SqlConnection(address))
             {
-                using (SqlCommand cmd = new SqlCommand("Select * From " + table, sql_conn))
+                sql_conn.Open();
+                foreach (var table in Tables_graph)
                 {
-                    /*Метод ExecuteReader() класса SqlCommand возврашает
-                     объект типа SqlDataReader, с помошью которого мы можем
-                     прочитать все строки, возврашенные в результате выполнения запроса
-                     CommandBehavior.CloseConnection - закрываем соединение после запроса
-                     */
-
-                    sql_conn.Open();
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    using (SqlCommand cmd = new SqlCommand("Select * From " + table.Name, sql_conn))
                     {
-                        //цикл по всем столбцам полученной в результате запроса таблицы
-                        while (dr.Read())
+                        /*Метод ExecuteReader() класса SqlCommand возврашает
+                         объект типа SqlDataReader, с помошью которого мы можем
+                         прочитать все строки, возврашенные в результате выполнения запроса
+                         CommandBehavior.CloseConnection - закрываем соединение после запроса
+                         */
+
+
+                        using (SqlDataReader dr = cmd.ExecuteReader())
                         {
-                            for (int i = 0; i < dr.FieldCount; i++)
-                            /*метод GetName() класса SqlDataReader позволяет получить имя столбца
-                             по номеру, который передается в качестве параметра, данному методу
-                             и означает номер столбца в таблице(начинается с 0)
-                             */
+                            //цикл по всем столбцам полученной в результате запроса таблицы
+                            while (dr.Read())
                             {
-                                values.Add(new ValueTag { Value = dr.GetValue(i).ToString().Trim(), Column = table + "." + dr.GetName(i).ToString().Trim() });
+                                for (int i = 0; i < dr.FieldCount; i++)
+                                /*метод GetName() класса SqlDataReader позволяет получить имя столбца
+                                 по номеру, который передается в качестве параметра, данному методу
+                                 и означает номер столбца в таблице(начинается с 0)
+                                 */
+                                {
+                                    values.Add(new ValueTag { Value = dr.GetValue(i).ToString().Trim(), Column = table.Name + "." + dr.GetName(i).ToString().Trim() });
+                                }
                             }
                         }
                     }

@@ -7,7 +7,7 @@ namespace TranslationLib
         public string Word { get; set; }
         public Tag Category { get; set; }
         public string Tag_TableColumn { get; set; }
-        public List<string> POSTags { get; set; }
+        public List<string> POSTags = new List<string>();
     }
 
     public enum Tag

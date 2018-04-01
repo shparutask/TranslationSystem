@@ -8,16 +8,14 @@ namespace TranslationLib
 {
     public class Grammar
     {
-        public List<Rule> Rules
+        public List<Rule> Rules;
+
+        public Grammar()
         {
-            get
+            Rules = new List<Rule>();
+            foreach (var s in rules)
             {
-                var r = new List<Rule>();
-                foreach (var s in rules)
-                {
-                    r.Add(new Rule(s));
-                }
-                return r;
+                Rules.Add(new Rule(s));
             }
         }
 
@@ -26,17 +24,17 @@ namespace TranslationLib
             var rights = "";
             foreach (var c in tree.root.children)
             {
-                rights = rights + c.value + "|";
+                rights = rights + c.value + " ";
             }
-            return tree.root.value + " -> " + rights;
+            return tree.root.value + " -> " + rights.Substring(0, rights.Length - 1);
         }
 
         private string isFunction(string w)
         {
-            for (int i = 0; i < function_words_tags.GetLength(1); i++)
-                for (int j = 0; j < function_words_tags.GetLength(2); j++)
+            for (int i = 0; i < function_words_tags.GetLength(0); i++)
+                for (int j = 0; j < function_words_tags.GetLength(1); j++)
                 {
-                    if (w == function_words_tags[i][j]) return function_words_tags[i][j];
+                    if (w == function_words_tags[i, j]) return function_words_tags[i, 0];
                 }
             return "";
         }
@@ -82,7 +80,7 @@ namespace TranslationLib
             var wlist = lx.getAll();
             foreach (var w in wlist)
             {
-                if ('A' <= w.Word[0] && w.Word[0] <= 'Z')
+                if ('A' <= w.Word[0] && w.Word[0] <= 'Z' && isFunction(w.Word) == "")
                     w.POSTags.Add("P");
 
                 string f = isFunction(w.Word);
@@ -94,7 +92,7 @@ namespace TranslationLib
 
             if (wlist[1].Word == "is")
             {
-                if (wlist[2].Word == "a" || wlist[2].Word == "an")
+                if (wlist[2].Word == "a" || wlist[2].Word == "an" || wlist[2].Word == "the")
                     if (!wlist[3].POSTags.Contains("N")) wlist[3].POSTags.Add("N");
                     else
                          if (!wlist[2].POSTags.Contains("A")) wlist[3].POSTags.Add("A");
@@ -119,44 +117,37 @@ namespace TranslationLib
         }
 
         string[] rules = new string[] {
-            "S -> WHAT VP OF NP OF NP VP | WHAT VP OF NP | WHAT VP OF NP VP| WHOSE NP VP",
-            "VP -> I | T NP | BE A | BE NP | VP AND VP | WITH NP LIKE NP | ABOUT NP"  ,
-            "NP -> P | AR Nom | Nom",
-            "Nom -> AN | AN Rel",
-            "AN -> N | A AN",
-            "Rel -> WHO VP | NP T",
-            "N -> 'Ns' | 'Np'",
-            "I -> 'Is' | 'Ip'",
-            "T -> 'Ts' | 'Tp'",
-            "A -> 'A'",
-            "P -> 'P'",
-            "BE -> 'BEs' | 'BEp'",
-            "AR -> 'AR'",
+            "S -> WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT VP OF NP VP|WHOSE NP VP",
+            "VP -> I|T NP|BE A|BE NP|VP AND VP|WITH NP LIKE NP|ABOUT NP"  ,
+            "NP -> P|AR Nom|Nom",
+            "Nom -> AN|AN Rel",
+            "AN -> N|A AN",
+            "Rel -> WHO VP|NP T",
+            "I -> 'Is'|'Ip'",
+            "T -> 'Ts'|'Tp'",
+            "BE -> BEs|BEp",
             "WHO -> 'WHO'",
-            "WHAT -> 'WHICH' | 'WHAT'",
-            "AND -> 'AND'",
-            "OR -> 'OR'",
-            "OF -> 'OF'",
+            "WHAT -> WHICH",
             "LIKE -> 'LIKE'",
             "WITH -> 'WITH'",
             "ABOUT -> 'ABOUT'",
             "WHOSE -> 'WHOSE'"
         };
 
-        string[][] function_words_tags = new string[][] {
-           new string[] {"BEs", "is", "was" },
-           new string[] { "BEp", "are", "were" },
-           new string[] {"AR", "a", "an", "the" },
-           new string[] {"AND", "and"  },
-           new string[] {"WHO", "Who" },
-           new string[] {"WHICH", "Which" },
-           new string[] {"WHAT" , "What" },
-           new string[] {"OR", "or" },
-           new string[] {"OF", "of"},
-           new string[] {"LIKE", "like"},
-           new string[] {"WITH", "with"},
-           new string[] {"ABOUT", "about"},
-           new string[] { "WHOSE", "Whose" }
+        string[,] function_words_tags = new string[,] {
+           { "BEs", "is", "was", "" },
+           { "BEp", "are", "were", "" },
+           {"AR", "a", "an", "the" },
+           {"AND", "and", "", ""  },
+           {"'WHO'", "Who", "", "" },
+           {"WHICH", "Which" , "", ""},
+           {"WHAT" , "What" , "", ""},
+           {"OR", "or" , "", ""},
+           {"OF", "of", "", ""},
+           {"'LIKE'", "like", "", ""},
+           {"'WITH'", "with", "", ""},
+           {"'ABOUT'", "about", "", ""},
+           { "'WHOSE'", "Whose" , "", ""}
            };
     }
 }

@@ -4,7 +4,7 @@ namespace TranslationLib
 {
     public class ParseTreeBuilder
     {
-        public ParseNode root = new ParseNode {value = "S", children = null };
+        public ParseNode root = new ParseNode { value = "S", children = null };
         List<ParseNode> top_level;
         public List<List<ParseNode>> tree = new List<List<ParseNode>>();
         Lexicon lx;
@@ -17,48 +17,118 @@ namespace TranslationLib
             this.g = g;
             var tagged_words = lx.getAll();
             top_level = new List<ParseNode>();
-            int i = 0;
+
             foreach (var w in tagged_words)
             {
                 foreach (var t in w.POSTags)
                     top_level.Add(new ParseNode { value = t, children = null, word = w });
-                i++;
             }
-            tree[0] = top_level;
 
-            var nodes = new List<ParseNode>();
+            tree.Add(top_level);
 
-            while (top_level.Count > 1)
+            while (tree[tree.Count - 1].Count > 1)
             {
-                foreach (var t in top_level)
+                top_level = new List<ParseNode>();
+                int count = tree[tree.Count - 1].Count;
+                var child = new List<ParseNode>();
+
+                var rule = containsInRight(tree[tree.Count - 1]);
+
+                top_level = new List<ParseNode>();
+
+                foreach (var n in tree[tree.Count - 1])
                 {
-                    string s = containsInRight(t.value);
-                    if (s != "")
+                    bool isAdded = false;
+                    foreach (var r in rule)
                     {
-                        foreach (var n in nodes)
+                        var left = leftNode(top_level, r.left);
+                        var node = rightNodes(tree[tree.Count - 1], r.right);
+                        if (node.Contains(n))
                         {
-                            if (n.value == s)
-                                n.children.Add(t);
+                            if (left == null)
+                                top_level.Add(new ParseNode { value = r.left, children = node });
+                            else
+                            {
+                                if (left.children == null)
+                                   { left.children = new List<ParseNode>();
+                                foreach (var c in node)
+                                
+                                    left.children.Add(c);
+                                }
+                            }
+                            isAdded = true;
                         }
-                        nodes.Add(new ParseNode { value = s, children = new List<ParseNode> { t } });
+                    }
+                    if (!isAdded && !top_level.Contains(n))
+                        top_level.Add(n);
+                }
+
+                tree.Add(top_level);
+            }
+
+            root = tree[tree.Count - 1][0];
+        }
+
+        private List<Rule> containsInRight(List<ParseNode> tokens)
+        {
+            List<Rule> rules = new List<Rule>();
+
+            int length = tokens.Count;
+            int count = length;
+            while (count > 0)
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    string s = "";
+                    for (int j = i; j <= length - count; j++)
+                        s += tokens[j].value + " ";
+
+                    if (!string.IsNullOrEmpty(s))
+                    {
+                        s = s.Substring(0, s.Length - 1);
+                        foreach (var r in g.Rules)
+                        {
+                            foreach (var t in r.right)
+                            {
+                                if (s == t)
+                                    rules.Add(new Rule { left = r.left, right = new List<string> { t } });
+                            }
+                        }
                     }
                 }
-                tree.Add(nodes);
+                count--;
             }
-
-            root = top_level[0];
+            return rules;
         }
 
-        private string containsInRight(string token)
+        private ParseNode leftNode(List<ParseNode> top_level, string value)
         {
-            foreach (var r in g.Rules)
+            foreach (var n in top_level)
             {
-                foreach (var t in r.right)
-                    if (t == token)
-                        return r.left;
+                if (n.value == value)
+                    return n;
             }
-            return "";
+            return null;
         }
-        
+
+        private List<ParseNode> rightNodes(List<ParseNode> top_level, List<string> right)
+        {
+            List<ParseNode> rights = new List<ParseNode>();
+
+            string[] tokens = right[0].Split(' ');
+            int i = 0;
+            foreach (var t in top_level)
+            {
+                if (tokens[i] == t.value)
+                {
+                    rights.Add(t);
+                    i++;
+                }
+
+                if (i >= tokens.Length) break;
+            }
+
+            return rights;
+        }
     }
 }

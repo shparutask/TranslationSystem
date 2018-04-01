@@ -1,18 +1,29 @@
-﻿namespace ConsoleApplication
+﻿using TranslationLib;
+using System;
+using System.Data.SqlClient;
+
+namespace ConsoleApplication
 {
     class Program
     {
         static void Main(string[] args)
         {
-            /* Translation t = new Translation();
-             var s = new Lexicon(new dbGraph(@"Data Source = SOPHIESHPA\SQLEXPRESS; Initial Catalog = MIGRATION_EXPERT; Integrated Security = True"));
+            Translation t = new Translation();
+            string question = "What is the e-mail of Andrey";
+            string query = t.ToQuery(question);
+            using (SqlConnection sql_conn = new SqlConnection(@"Data Source = SOPHIESHPA\SQLEXPRESS; Initial Catalog = MIGRATION_EXPERT; Integrated Security = True"))
+            {
+                sql_conn.Open();
+                var keys = sql_conn.CreateCommand();
+                keys.CommandText = query;
+                var m_keys = keys.ExecuteReader();
+                while (m_keys.Read())
+                {
+                    Console.WriteLine(m_keys[0].ToString());
+                }
+            }
 
-             t.Tagging_Cat("What is the duck?", s);
-
-            Grammar g = new Grammar();
-            Console.WriteLine(g.verb_stem("does"));
-            Console.WriteLine(g.verb_stem("likes"));
-            Console.Read();*/
+            Console.ReadKey();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace TranslationLib
             this.root = root;
             if (root.children != null)
                 foreach (var s in root.children)
-                    tree.Add(new ParseTree(new ParseNode { value = s.value, children = s.children }));
+                    tree.Add(new ParseTree(s));
         }
     }
 }
