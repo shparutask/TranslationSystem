@@ -81,7 +81,7 @@ namespace TranslationLib
                     return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\n" + AbstractSemanticInterpetation(tree.tree[3]);
 
                 case "S -> WHAT VP OF NP OF NP VP":
-                    return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\ntype " + AbstractSemanticInterpetation(tree.tree[3]) + ")\ntype " + AbstractSemanticInterpetation(tree.tree[5]) + "\n" + AbstractSemanticInterpetation(tree.tree[6]);
+                    return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\ntype " + AbstractSemanticInterpetation(tree.tree[3]) + "\n" + AbstractSemanticInterpetation(tree.tree[6]) + " like " + AbstractSemanticInterpetation(tree.tree[5]);
 
                 case "VP -> BE NP":
                     return AbstractSemanticInterpetation(tree.tree[1]);
@@ -98,8 +98,8 @@ namespace TranslationLib
                 case "AN -> N":
                     return AbstractSemanticInterpetation(tree.tree[0]);
 
-                case "VP -> WITH NP LIKE NP":
-                    return AbstractSemanticInterpetation(tree.tree[1]) + " " + AbstractSemanticInterpetation(tree.tree[3]);
+                case "VP -> LIKE NP":
+                    return AbstractSemanticInterpetation(tree.tree[1]);
 
                 default: return "";
             }
@@ -117,16 +117,27 @@ namespace TranslationLib
                 var words = s.Split(' ');
                 if (words[0] == "type")
                     tables.Add(words[1]);
-                else if (words[1] == "?v")
+                else
+                    if (words[1] == "?v")
                 {
                     var w = words[0].Split('.');
                     select = w[1];
                     tables.Add(w[0]);
                 }
-                else
+                else if (words.Length > 1)
                 {
-                    wheres.Add(words[1] + " = '" + words[0] + "'");
-                    tables.Add(words[1].Substring(0, words[1].IndexOf('.')));
+                    string value = "";
+                    int indexLike = -1;
+                    for (int i = 0; i < words.Length - 1; i++)
+                    {
+                        if (words[i] == "like")
+                            indexLike = i;
+                        else
+                            value += " " + words[i];
+                    }
+                    if (indexLike == -1) wheres.Add(words[words.Length - 1] + " = '" + value + "'");
+                    else wheres.Add(words[words.Length - 1] + " like '" + value + "'");
+                    tables.Add(words[words.Length - 1].Substring(0, words[words.Length - 1].IndexOf('.')));
                 }
             }
 
@@ -144,6 +155,7 @@ namespace TranslationLib
                             tab2 = table;
                     }
                     string conn = Join(tab1, tab2);
+                    if(string.IsNullOrEmpty(conn)) conn = Join(tab2, tab1);
                     if (!string.IsNullOrEmpty(conn))
                         join += conn;
                 }
@@ -156,12 +168,14 @@ namespace TranslationLib
             if (t1 == t2)
                 return t2.Name;
             else
+            {
                 foreach (var f in t1.FK)
                 {
                     string j = Join(f.Value.t, t2);
                     if (!string.IsNullOrEmpty(j))
                         return j + " join " + t1.Name + " on " + f.Value.t.Name + "." + f.Value.column + " = " + t1.Name + "." + f.Key.ToString();
                 }
+            }
             return "";
         }
     }

@@ -78,6 +78,8 @@ namespace TranslationLib
             #   S  -> P is AR Ns | P is A | P Is | P Ts P
             #   AR -> a | an*/
             var wlist = lx.getAll();
+            int indexLike = -1;
+
             foreach (var w in wlist)
             {
                 if ('A' <= w.Word[0] && w.Word[0] <= 'Z' && isFunction(w.Word) == "")
@@ -87,7 +89,23 @@ namespace TranslationLib
                 if (!string.IsNullOrEmpty(f))
                 {
                     w.POSTags.Add(f);
+                    if(f == "LIKE")
+                    {
+                        indexLike = wlist.IndexOf(w);
+                    }
                 }
+            }
+
+            if (indexLike != -1)
+            {
+                for (int i = indexLike + 2; i < wlist.Count; i++)
+                {
+                    wlist[indexLike + 1].Word += " " + wlist[i].Word;
+                }
+
+                wlist.RemoveRange(indexLike + 2, wlist.Count - indexLike  - 2);
+                wlist[indexLike + 1].POSTags.Clear();
+                wlist[indexLike + 1].POSTags.Add("NP");
             }
 
             if (wlist[1].Word == "is")
@@ -113,25 +131,24 @@ namespace TranslationLib
                 }
             }
 
+            for(int i = 0; i < wlist.Count - 1; i++)
+            {
+                if (wlist[i].Word == "of")
+                    wlist[i + 1].POSTags.Add("NP");
+            }
+
             lx.changeLx(wlist);
         }
 
         string[] rules = new string[] {
             "S -> WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT VP OF NP VP|WHOSE NP VP",
-            "VP -> I|T NP|BE A|BE NP|VP AND VP|WITH NP LIKE NP|ABOUT NP"  ,
+            "VP -> I|T NP|BE A|BE NP|VP AND VP|WITH NP|LIKE NP|ABOUT NP"  ,
             "NP -> P|AR Nom|Nom",
             "Nom -> AN|AN Rel",
             "AN -> N|A AN",
             "Rel -> WHO VP|NP T",
-            "I -> 'Is'|'Ip'",
-            "T -> 'Ts'|'Tp'",
             "BE -> BEs|BEp",
-            "WHO -> 'WHO'",
             "WHAT -> WHICH",
-            "LIKE -> 'LIKE'",
-            "WITH -> 'WITH'",
-            "ABOUT -> 'ABOUT'",
-            "WHOSE -> 'WHOSE'"
         };
 
         string[,] function_words_tags = new string[,] {
@@ -139,15 +156,15 @@ namespace TranslationLib
            { "BEp", "are", "were", "" },
            {"AR", "a", "an", "the" },
            {"AND", "and", "", ""  },
-           {"'WHO'", "Who", "", "" },
+           {"WHO", "Who", "", "" },
            {"WHICH", "Which" , "", ""},
            {"WHAT" , "What" , "", ""},
            {"OR", "or" , "", ""},
            {"OF", "of", "", ""},
-           {"'LIKE'", "like", "", ""},
-           {"'WITH'", "with", "", ""},
-           {"'ABOUT'", "about", "", ""},
-           { "'WHOSE'", "Whose" , "", ""}
+           {"LIKE", "like", "", ""},
+           {"WITH", "with", "", ""},
+           {"ABOUT", "about", "", ""},
+           { "WHOSE", "Whose" , "", ""}
            };
     }
 }

@@ -9,7 +9,7 @@ namespace ConsoleApplication
         static void Main(string[] args)
         {
             Translation t = new Translation();
-            string question = "What is the e-mail of Andrey";
+            string question = "What is the name of author of publication like About Me";//"What is the e-mail of Andrey";
             string query = t.ToQuery(question);
             using (SqlConnection sql_conn = new SqlConnection(@"Data Source = SOPHIESHPA\SQLEXPRESS; Initial Catalog = MIGRATION_EXPERT; Integrated Security = True"))
             {

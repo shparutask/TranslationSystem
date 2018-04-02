@@ -50,11 +50,9 @@ namespace TranslationLib
                             else
                             {
                                 if (left.children == null)
-                                   { left.children = new List<ParseNode>();
-                                foreach (var c in node)
-                                
-                                    left.children.Add(c);
-                                }
+                                    left.children = new List<ParseNode>();
+                                if (!left.children.Contains(n) && node.Contains(n))
+                                    left.children.Add(n);
                             }
                             isAdded = true;
                         }
