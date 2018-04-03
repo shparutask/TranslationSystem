@@ -83,12 +83,12 @@ namespace TranslationLib
             foreach (var w in wlist)
             {
                 if ('A' <= w.Word[0] && w.Word[0] <= 'Z' && isFunction(w.Word) == "")
-                    w.POSTags.Add("P");
+                    w.POSTag = "P";
 
                 string f = isFunction(w.Word);
                 if (!string.IsNullOrEmpty(f))
                 {
-                    w.POSTags.Add(f);
+                    w.POSTag = f;
                     if(f == "LIKE")
                     {
                         indexLike = wlist.IndexOf(w);
@@ -104,16 +104,15 @@ namespace TranslationLib
                 }
 
                 wlist.RemoveRange(indexLike + 2, wlist.Count - indexLike  - 2);
-                wlist[indexLike + 1].POSTags.Clear();
-                wlist[indexLike + 1].POSTags.Add("NP");
+                wlist[indexLike + 1].POSTag = "NP";
             }
 
             if (wlist[1].Word == "is")
             {
                 if (wlist[2].Word == "a" || wlist[2].Word == "an" || wlist[2].Word == "the")
-                    if (!wlist[3].POSTags.Contains("N")) wlist[3].POSTags.Add("N");
+                    if (wlist[3].POSTag != "N") wlist[3].POSTag = "N";
                     else
-                         if (!wlist[2].POSTags.Contains("A")) wlist[3].POSTags.Add("A");
+                         if (wlist[2].POSTag != "A") wlist[3].POSTag = "A";
             }
             else
             {
@@ -121,20 +120,20 @@ namespace TranslationLib
                 if (wlist.Count == 2)
                 {
                     wlist[1].Word = stem;
-                    if (!wlist[1].POSTags.Contains("I")) wlist[1].POSTags.Add("I");
+                    if (wlist[1].POSTag != "I") wlist[1].POSTag = "I";
                 }
                 else
-                if (wlist[2].POSTags.Contains("P"))
+                if (wlist[2].POSTag == "P")
                 {
                     wlist[1].Word = stem;
-                    if (!wlist[1].POSTags.Contains("T")) wlist[1].POSTags.Add("T");
+                    if (wlist[1].POSTag != "T") wlist[1].POSTag = "T";
                 }
             }
 
             for(int i = 0; i < wlist.Count - 1; i++)
             {
                 if (wlist[i].Word == "of")
-                    wlist[i + 1].POSTags.Add("NP");
+                    wlist[i + 1].POSTag = "NP";
             }
 
             lx.changeLx(wlist);

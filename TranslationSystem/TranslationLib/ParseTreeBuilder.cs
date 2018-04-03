@@ -20,8 +20,7 @@ namespace TranslationLib
 
             foreach (var w in tagged_words)
             {
-                foreach (var t in w.POSTags)
-                    top_level.Add(new ParseNode { value = t, children = null, word = w });
+                top_level.Add(new ParseNode { value = w.POSTag, children = null, word = w });
             }
 
             tree.Add(top_level);

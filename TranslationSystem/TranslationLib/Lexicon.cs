@@ -7,8 +7,7 @@ namespace TranslationLib
         public List<ValueTag> value_tags { get; set; }
         public List<string>[] Language_tags { get { return language_tags; } }
 
-        List<string>[] language_tags = new List<string>[] { new List<string>() {"LAST_NAME.NAME_ENG", "name" },
-                                                            new List<string>() {"FIRST_NAME", "name" },
+        List<string>[] language_tags = new List<string>[] { new List<string>() {"FIRST_NAME.NAME_ENG", "name" },
                                                             new List<string>() {"PUBLICATION.TITLE", "publication"},
                                                             new List<string>() {"E_MAIL.MAIL", "mail", "e-mail", "E_mail" },
                                                             new List<string>() {"TELEPHONE", "phone"},

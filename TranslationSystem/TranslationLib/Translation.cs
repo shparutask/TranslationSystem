@@ -21,6 +21,7 @@ namespace TranslationLib
 
         private void Tagging_Cat(string question)
         {
+            lx.getAll().Clear();
             string[] q = question.Split();
             bool IsAdded = false;
             foreach (var w in q)
@@ -135,13 +136,13 @@ namespace TranslationLib
                         else
                             value += " " + words[i];
                     }
-                    if (indexLike == -1) wheres.Add(words[words.Length - 1] + " = '" + value + "'");
-                    else wheres.Add(words[words.Length - 1] + " like '" + value + "'");
+                    if (indexLike == -1) wheres.Add(words[words.Length - 1] + " = '" + value.Substring(1, value.Length - 1) + "'");
+                    else wheres.Add(words[words.Length - 1] + " like '%" + value.Substring(1, value.Length - 2) + "%'");
                     tables.Add(words[words.Length - 1].Substring(0, words[words.Length - 1].IndexOf('.')));
                 }
             }
 
-            string join = tables.Count > 1 ? "" : tables[0];
+            List<string> join = new List<string>();
 
             for (int i = 0; i < tables.Count; i++)
                 for (int j = i + 1; j < tables.Count; j++)
@@ -155,12 +156,56 @@ namespace TranslationLib
                             tab2 = table;
                     }
                     string conn = Join(tab1, tab2);
-                    if(string.IsNullOrEmpty(conn)) conn = Join(tab2, tab1);
+                    if (string.IsNullOrEmpty(conn)) conn = Join(tab2, tab1);
+                    if (string.IsNullOrEmpty(conn)) conn = ComplexJoin(tab1, tab2);
                     if (!string.IsNullOrEmpty(conn))
-                        join += conn;
+                        join.Add(conn);
                 }
 
-            return "select " + select + " from " + join + " where " + wheres[0];
+            string JoinFrom = join[0];
+            for(int i = 1; i < join.Count; i++)
+            {
+                JoinFrom += " " + join[i].Substring(join[i].IndexOf(" "), join[i].Length - join[i].IndexOf(" "));
+            }
+
+            return "select " + select + " from " + JoinFrom + " where " + wheres[0];
+        }
+
+        private string ComplexJoin(Table t1, Table t2)
+        {
+            bool isFinded = false;
+            Table Ft = null;
+            string col1 = "", col2 = "", fcol1 = "", fcol2 = "";
+            foreach (var t in DB.Tables_graph)
+            {
+                int d = 0;
+                foreach (var f in t.FK)
+                {
+                    if (!isFinded)
+                    {
+                        if (f.Value.t == t1)
+                        {
+                            col1 = f.Value.column;
+                            fcol1 = f.Key;
+                            d++;
+                        }
+                        if (f.Value.t == t2)
+                        {
+                            col2 = f.Value.column;
+                            fcol2 = f.Key;
+                            d++;
+                        }
+
+                        if (d == 2)
+                        {
+                            Ft = t;
+                            isFinded = true;
+                        }
+                    }
+                }
+            }
+            if (isFinded) return t1.Name + " join " + Ft.Name + " on " + t1.Name + "." + col1 + " = " + Ft.Name + "." + fcol1 + " join " + t2.Name + " on " + t2.Name + "." + col2 + " = " + Ft.Name + "." + fcol2;
+            return "";
         }
 
         private string Join(Table t1, Table t2)
@@ -175,6 +220,7 @@ namespace TranslationLib
                     if (!string.IsNullOrEmpty(j))
                         return j + " join " + t1.Name + " on " + f.Value.t.Name + "." + f.Value.column + " = " + t1.Name + "." + f.Key.ToString();
                 }
+
             }
             return "";
         }
