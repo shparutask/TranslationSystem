@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TranslationLib;
 using System.Windows.Forms;
 
 namespace TranslationSystem
@@ -17,5 +11,13 @@ namespace TranslationSystem
             InitializeComponent();
         }
         
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var t = new Translation();
+            string result = t.ToQuery(richTextQuest.Text);
+            var q = new QueryExecution();
+            richTextBox1.Text = q.ExecuteQuery(result);
+        }
     }
 }

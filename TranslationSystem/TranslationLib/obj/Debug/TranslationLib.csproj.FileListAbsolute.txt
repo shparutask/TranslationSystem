@@ -61,3 +61,5 @@ C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationLi
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.csprojResolveAssemblyReference.cache
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.dll
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationLib\obj\Debug\TranslationLib.pdb
+C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationLib\bin\Debug\LingvoNET.dll
+C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\TranslationLib\bin\Debug\LingvoNET.xml

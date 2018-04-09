@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "Conso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationLib", "TranslationLib\TranslationLib.csproj", "{463A78F5-27A5-41A1-B565-7B09FA98741E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnPredictLib", "LearnPredictLib\LearnPredictLib.csproj", "{9D816749-9B31-4222-98A3-3A475247CE95}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,14 +41,6 @@ Global
 		{463A78F5-27A5-41A1-B565-7B09FA98741E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{463A78F5-27A5-41A1-B565-7B09FA98741E}.Release|x86.ActiveCfg = Release|Any CPU
 		{463A78F5-27A5-41A1-B565-7B09FA98741E}.Release|x86.Build.0 = Release|Any CPU
-		{9D816749-9B31-4222-98A3-3A475247CE95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D816749-9B31-4222-98A3-3A475247CE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D816749-9B31-4222-98A3-3A475247CE95}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9D816749-9B31-4222-98A3-3A475247CE95}.Debug|x86.Build.0 = Debug|Any CPU
-		{9D816749-9B31-4222-98A3-3A475247CE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D816749-9B31-4222-98A3-3A475247CE95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D816749-9B31-4222-98A3-3A475247CE95}.Release|x86.ActiveCfg = Release|Any CPU
-		{9D816749-9B31-4222-98A3-3A475247CE95}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

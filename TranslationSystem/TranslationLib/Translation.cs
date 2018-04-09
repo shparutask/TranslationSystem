@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace TranslationLib
 {
@@ -122,8 +123,13 @@ namespace TranslationLib
                     if (words[1] == "?v")
                 {
                     var w = words[0].Split('.');
-                    select = w[1];
-                    tables.Add(w[0]);
+                    if (w.Length > 1)
+                    {
+                        select = w[1];
+                        tables.Add(w[0]);
+                    }
+                    else
+                        select = w[0];
                 }
                 else if (words.Length > 1)
                 {
@@ -136,7 +142,7 @@ namespace TranslationLib
                         else
                             value += " " + words[i];
                     }
-                    if (indexLike == -1) wheres.Add(words[words.Length - 1] + " = '" + value.Substring(1, value.Length - 1) + "'");
+                    if (indexLike == -1 && Int32.TryParse(value.Substring(1, value.Length - 1), out indexLike)) wheres.Add(words[words.Length - 1] + " = " + indexLike.ToString() + "");
                     else wheres.Add(words[words.Length - 1] + " like '%" + value.Substring(1, value.Length - 2) + "%'");
                     tables.Add(words[words.Length - 1].Substring(0, words[words.Length - 1].IndexOf('.')));
                 }
@@ -163,7 +169,7 @@ namespace TranslationLib
                 }
 
             string JoinFrom = join[0];
-            for(int i = 1; i < join.Count; i++)
+            for (int i = 1; i < join.Count; i++)
             {
                 JoinFrom += " " + join[i].Substring(join[i].IndexOf(" "), join[i].Length - join[i].IndexOf(" "));
             }
@@ -220,7 +226,6 @@ namespace TranslationLib
                     if (!string.IsNullOrEmpty(j))
                         return j + " join " + t1.Name + " on " + f.Value.t.Name + "." + f.Value.column + " = " + t1.Name + "." + f.Key.ToString();
                 }
-
             }
             return "";
         }

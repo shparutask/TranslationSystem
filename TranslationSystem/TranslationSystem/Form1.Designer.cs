@@ -32,6 +32,7 @@
             this.Result = new System.Windows.Forms.Label();
             this.Question = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextQuest
@@ -45,20 +46,21 @@
             // Result
             // 
             this.Result.AutoSize = true;
-            this.Result.Location = new System.Drawing.Point(12, 140);
+            this.Result.Location = new System.Drawing.Point(25, 152);
             this.Result.Name = "Result";
             this.Result.Size = new System.Drawing.Size(59, 13);
             this.Result.TabIndex = 2;
             this.Result.Text = "Результат";
+
             // 
             // Question
             // 
             this.Question.AutoSize = true;
             this.Question.Location = new System.Drawing.Point(12, 32);
             this.Question.Name = "Question";
-            this.Question.Size = new System.Drawing.Size(118, 13);
+            this.Question.Size = new System.Drawing.Size(203, 13);
             this.Question.TabIndex = 2;
-            this.Question.Text = "Введите свой вопрос:";
+            this.Question.Text = "Введите свой вопрос (на английском):";
             // 
             // richTextBox1
             // 
@@ -68,11 +70,22 @@
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(712, 112);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(175, 41);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Выполнить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 455);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.Question);
             this.Controls.Add(this.Result);
@@ -90,6 +103,7 @@
         private System.Windows.Forms.Label Result;
         private System.Windows.Forms.Label Question;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

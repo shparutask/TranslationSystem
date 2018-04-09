@@ -8,13 +8,14 @@ namespace TranslationLib
         public List<string>[] Language_tags { get { return language_tags; } }
 
         List<string>[] language_tags = new List<string>[] { new List<string>() {"FIRST_NAME.NAME_ENG", "name" },
-                                                            new List<string>() {"PUBLICATION.TITLE", "publication"},
+                                                            new List<string>() {"PUBLICATION.TITLE", "title"},
+                                                            new List<string>() {"PUBLICATION.DESCRIPTION_ENG", "publication"},
                                                             new List<string>() {"E_MAIL.MAIL", "mail", "e-mail", "E_mail" },
-                                                            new List<string>() {"TELEPHONE", "phone"},
-                                                            new List<string>() {"EXPERT_PUBLICATION" },
-                                                            new List<string>() {"MIDDLE_NAME"},
-                                                            new List<string>() {"EXPERT", "author" },
+                                                            new List<string>() {"TELEPHONE.PHONE", "phone"},
+                                                            new List<string>() {"EXPERT", "author", "expert" },
+                                                            new List<string>() {"DEGREE", "degree" },
         };
+
         List<TaggedWord> lx = new List<TaggedWord>();
 
         public Lexicon(dbGraph g)

@@ -89,7 +89,7 @@ namespace TranslationLib
                 if (!string.IsNullOrEmpty(f))
                 {
                     w.POSTag = f;
-                    if(f == "LIKE")
+                    if (f == "LIKE")
                     {
                         indexLike = wlist.IndexOf(w);
                     }
@@ -103,7 +103,7 @@ namespace TranslationLib
                     wlist[indexLike + 1].Word += " " + wlist[i].Word;
                 }
 
-                wlist.RemoveRange(indexLike + 2, wlist.Count - indexLike  - 2);
+                wlist.RemoveRange(indexLike + 2, wlist.Count - indexLike - 2);
                 wlist[indexLike + 1].POSTag = "NP";
             }
 
@@ -130,10 +130,13 @@ namespace TranslationLib
                 }
             }
 
-            for(int i = 0; i < wlist.Count - 1; i++)
+            for (int i = 0; i < wlist.Count - 1; i++)
             {
                 if (wlist[i].Word == "of")
                     wlist[i + 1].POSTag = "NP";
+
+                if (wlist[i].Word == "a" || wlist[i].Word == "an" || wlist[i].Word == "the")
+                    if (wlist[i + 1].POSTag != "N") wlist[i + 1].POSTag = "N";
             }
 
             lx.changeLx(wlist);
@@ -141,29 +144,30 @@ namespace TranslationLib
 
         string[] rules = new string[] {
             "S -> WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT VP OF NP VP|WHOSE NP VP",
-            "VP -> I|T NP|BE A|BE NP|VP AND VP|WITH NP|LIKE NP|ABOUT NP"  ,
+            "VP -> I|T NP|BE A|BE NP|VP AND VP|WITH NP|LIKE NP"  ,
             "NP -> P|AR Nom|Nom",
             "Nom -> AN|AN Rel",
             "AN -> N|A AN",
             "Rel -> WHO VP|NP T",
             "BE -> BEs|BEp",
             "WHAT -> WHICH",
+            "OF -> WHO HAVE"
         };
 
         string[,] function_words_tags = new string[,] {
-           { "BEs", "is", "was", "" },
-           { "BEp", "are", "were", "" },
+           {"BEs", "is", "was", "" },
+           {"BEp", "are", "were", "" },
            {"AR", "a", "an", "the" },
            {"AND", "and", "", ""  },
-           {"WHO", "Who", "", "" },
+           {"WHO", "Who", "who", "" },
            {"WHICH", "Which" , "", ""},
            {"WHAT" , "What" , "", ""},
            {"OR", "or" , "", ""},
            {"OF", "of", "", ""},
-           {"LIKE", "like", "", ""},
+           {"LIKE", "like", "about", ""},
            {"WITH", "with", "", ""},
-           {"ABOUT", "about", "", ""},
-           { "WHOSE", "Whose" , "", ""}
+           {"WHOSE", "Whose", "", ""},
+           {"HAVE", "has", "have", ""}
            };
     }
 }

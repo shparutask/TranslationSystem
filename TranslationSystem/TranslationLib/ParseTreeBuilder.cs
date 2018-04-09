@@ -7,14 +7,9 @@ namespace TranslationLib
         public ParseNode root = new ParseNode { value = "S", children = null };
         List<ParseNode> top_level;
         public List<List<ParseNode>> tree = new List<List<ParseNode>>();
-        Lexicon lx;
-
-        Grammar g;
 
         public ParseTreeBuilder(Lexicon lx, Grammar g)
         {
-            this.lx = lx;
-            this.g = g;
             var tagged_words = lx.getAll();
             top_level = new List<ParseNode>();
 
@@ -31,7 +26,7 @@ namespace TranslationLib
                 int count = tree[tree.Count - 1].Count;
                 var child = new List<ParseNode>();
 
-                var rule = containsInRight(tree[tree.Count - 1]);
+                var rule = containsInRight(tree[tree.Count - 1], g);
 
                 top_level = new List<ParseNode>();
 
@@ -44,7 +39,7 @@ namespace TranslationLib
                         var node = rightNodes(tree[tree.Count - 1], r.right);
                         if (node.Contains(n))
                         {
-                            if (left == null)
+                            if (left == null || left.word != null)
                                 top_level.Add(new ParseNode { value = r.left, children = node });
                             else
                             {
@@ -66,7 +61,7 @@ namespace TranslationLib
             root = tree[tree.Count - 1][0];
         }
 
-        private List<Rule> containsInRight(List<ParseNode> tokens)
+        private List<Rule> containsInRight(List<ParseNode> tokens, Grammar g)
         {
             List<Rule> rules = new List<Rule>();
 
@@ -100,10 +95,10 @@ namespace TranslationLib
 
         private ParseNode leftNode(List<ParseNode> top_level, string value)
         {
-            foreach (var n in top_level)
+            for (int i = top_level.Count - 1; i >= 0; i--)
             {
-                if (n.value == value)
-                    return n;
+                if (top_level[i].value == value)
+                    return top_level[i];
             }
             return null;
         }

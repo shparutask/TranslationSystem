@@ -83,10 +83,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LearnPredictLib\LearnPredictLib.csproj">
-      <Project>{9d816749-9b31-4222-98a3-3a475247ce95}</Project>
-      <Name>LearnPredictLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TranslationLib\TranslationLib.csproj">
       <Project>{463a78f5-27a5-41a1-b565-7b09fa98741e}</Project>
       <Name>TranslationLib</Name>
