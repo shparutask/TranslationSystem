@@ -20,10 +20,12 @@ namespace TranslationLib
                 while (m_keys.Read())
                 {
                     for (int i = 0; i < m_keys.FieldCount; i++)
-                        result += m_keys[i].ToString() + "\n";
+                        result += m_keys[i].ToString() + "\t";
+                    result = result.Substring(0, result.Length - 1);
+                    result += "\n";
                 }
             }
-            Result = result;
+            Result = result.Substring(0, result.Length - 1);
         }
     }
 }

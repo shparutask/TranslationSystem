@@ -62,9 +62,8 @@ C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\ConsoleAppl
 C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\ConsoleApplication\bin\Debug\IronPython.Modules.xml
 C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\ConsoleApplication\bin\Debug\IronPython.SQLite.xml
 C:\Users\Sonya\Desktop\VCR\TranslationSystem - git\TranslationSystem\ConsoleApplication\bin\Debug\IronPython.Wpf.xml
+C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\bin\Debug\ConsoleApplication.exe.config
-C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.exe
-C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.pdb
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\bin\Debug\ConsoleApplication.exe
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\bin\Debug\ConsoleApplication.pdb
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\bin\Debug\IronPython.dll
@@ -84,4 +83,5 @@ C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplic
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\bin\Debug\Microsoft.Dynamic.xml
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\bin\Debug\Microsoft.Scripting.xml
 C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\bin\Debug\Microsoft.Scripting.Metadata.xml
-C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.exe
+C:\Users\Sonya\Desktop\VCR\TranslationSystem_git\TranslationSystem\ConsoleApplication\obj\Debug\ConsoleApplication.pdb

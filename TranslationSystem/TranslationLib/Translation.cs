@@ -77,11 +77,15 @@ namespace TranslationLib
             switch (topLevelRule)
             {
                 case "S -> WHOSE NP VP":
-                    if (AbstractSemanticInterpetation(tree.tree[2]).Contains(";")) return "EXPERT ?v\n" + AbstractSemanticInterpetation(tree.tree[2]).Split(';')[0] + " like " + AbstractSemanticInterpetation(tree.tree[2]).Split(';')[1];
-                    else return "EXPERT ?v\n" + AbstractSemanticInterpetation(tree.tree[2]) + " like " + AbstractSemanticInterpetation(tree.tree[1]);
+                    if (AbstractSemanticInterpetation(tree.tree[2]).Contains(";")) return "FIRST_NAME.NAME_ENG ?v\n" + "MIDDLE_NAME.NAME_ENG ?v\n" + "LAST_NAME.NAME_ENG ?v\n" + AbstractSemanticInterpetation(tree.tree[2]).Split(';')[0] + " like " + AbstractSemanticInterpetation(tree.tree[2]).Split(';')[1];
+                    else return "FIRST_NAME.NAME_ENG ?v\n" + "MIDDLE_NAME.NAME_ENG ?v\n" + "LAST_NAME.NAME_ENG ?v\n" + AbstractSemanticInterpetation(tree.tree[2]) + " like " + AbstractSemanticInterpetation(tree.tree[1]);
+
                 case "S -> WHAT VP OF NP":
                     if (AbstractSemanticInterpetation(tree.tree[3]).Contains(";")) return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\n" + AbstractSemanticInterpetation(tree.tree[3]).Split(';')[0] + " like " + AbstractSemanticInterpetation(tree.tree[3]).Split(';')[1];
-                        return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\n" + AbstractSemanticInterpetation(tree.tree[3]);
+                    return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\n" + AbstractSemanticInterpetation(tree.tree[3]);
+
+                case "S -> WHAT VP THERE":
+                    return AbstractSemanticInterpetation(tree.tree[1]) + " ?v";
 
                 case "S -> WHAT VP OF NP OF NP VP":
                     return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\ntype " + AbstractSemanticInterpetation(tree.tree[3]) + "\n" + AbstractSemanticInterpetation(tree.tree[6]).Split(';')[0] + " like " + AbstractSemanticInterpetation(tree.tree[6]).Split(';')[1];
@@ -124,7 +128,7 @@ namespace TranslationLib
 
                 if (words[0] == "EXPERT")
                 {
-                    select = "EXPERT.*";
+                    select = sems.Length == 1 ? "DEGREE  " : "EXPERT.*";
                     tables.Add(words[0]);
                 }
 
@@ -135,11 +139,9 @@ namespace TranslationLib
                     var w = words[0].Split('.');
                     if (w.Length > 1)
                     {
-                        select = w[1];
                         if (!tables.Contains(w[0])) tables.Add(w[0]);
                     }
-                    else
-                        if (string.IsNullOrEmpty(select)) select = w[0];
+                    select += words[0] + ", ";
                 }
 
                 else if (words.Length > 1)
@@ -161,25 +163,31 @@ namespace TranslationLib
 
             List<string> join = new List<string>();
 
-            for (int i = 0; i < tables.Count; i++)
-                for (int j = i + 1; j < tables.Count; j++)
+            for (int i = 0; i < tables.Count - 1; i++)
+            {
+                Table tab1 = null, tab2 = null;
+                foreach (var table in DB.Tables_graph)
                 {
-                    Table tab1 = null, tab2 = null;
-                    foreach (var table in DB.Tables_graph)
-                    {
-                        if (tables[i] == table.Name)
-                            tab1 = table;
-                        if (tables[j] == table.Name)
-                            tab2 = table;
-                    }
-                    string conn = Join(tab1, tab2);
-                    if (string.IsNullOrEmpty(conn)) conn = Join(tab2, tab1);
-                    if (string.IsNullOrEmpty(conn)) conn = ComplexJoin(tab1, tab2);
-                    if (!string.IsNullOrEmpty(conn))
-                        join.Add(conn);
+                    if (tables[i] == table.Name)
+                        tab1 = table;
+                    if (tables[i + 1] == table.Name)
+                        tab2 = table;
                 }
 
+                string conn = Join(tab1, tab2);
+                if (string.IsNullOrEmpty(conn)) conn = Join(tab2, tab1);
+                if (string.IsNullOrEmpty(conn)) conn = ComplexJoin(tab1, tab2);
+                if (!string.IsNullOrEmpty(conn))
+                    join.Add(conn);
+            }
+
             string JoinFrom = "";
+
+            if(tables.Count == 0)
+            {
+                tables.Add(select.Substring(0, select.Length - 2));
+                select = "TITLE  ";
+            }
 
             if (join.Count == 0) JoinFrom = tables[0];
             else
@@ -190,12 +198,16 @@ namespace TranslationLib
 
                     for (int i = 1; i < join.Count; i++)
                     {
-                        JoinFrom += " " + join[i].Substring(join[i].IndexOf(" "), join[i].Length - join[i].IndexOf(" "));
+                        string ex = IndexSubstring(join[i], join[i - 1]);
+                        if (string.IsNullOrEmpty(ex)) JoinFrom += " " + join[i].Substring(join[i].IndexOf("join"), join[i].Length - join[i].IndexOf("join"));
+                        else JoinFrom += " " + join[i].Substring(join[i].IndexOf(ex) + ex.Length, join[i].Length - join[i].IndexOf(ex) - ex.Length);
                     }
                 }
             }
 
-            return "select " + select + " from " + JoinFrom + " where " + wheres[0];
+            string where = "";
+            if (wheres.Count > 0) where = " where " + wheres[0];
+            return "select " + select.Substring(0, select.Length - 2) + " from " + JoinFrom + where;
         }
 
         private string ComplexJoin(Table t1, Table t2)
@@ -248,6 +260,19 @@ namespace TranslationLib
                         return j + " join " + t1.Name + " on " + f.Value.t.Name + "." + f.Value.column + " = " + t1.Name + "." + f.Key.ToString();
                 }
             }
+            return "";
+        }
+
+        private string IndexSubstring(string join1, string join2)
+        {
+            string[] J1 = join1.Split();
+            string[] J2 = join2.Split();
+            for (int i = 1; i < J1.Length; i++)
+                for (int j = 1; j < J2.Length; j++)
+                {
+                    if (J1[i] == J2[j] && J1[i - 1] == J2[j - 1] && J1[i - 1] == "join") return J1[i - 1] + " " + J1[i] + " on " + J1[i + 2] + " = " + J1[i + 4];
+                }
+
             return "";
         }
     }

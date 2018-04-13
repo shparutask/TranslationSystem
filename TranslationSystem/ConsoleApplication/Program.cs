@@ -27,7 +27,8 @@ namespace ConsoleApplication
             foreach (var s in queries)
             {
                 result = t.ToQuery(s);
-                Console.WriteLine("\n" + q.ExecuteQuery(result) + "\n" + result);
+                q.ExecuteQuery(result);
+                Console.WriteLine(s + "\n" + q.Result);
             }
 
             Console.WriteLine("Success!");
