@@ -29,7 +29,7 @@ namespace TranslationLib
             return tree.root.value + " -> " + rights.Substring(0, rights.Length - 1);
         }
 
-        private string isFunction(string w)
+        public string isFunction(string w)
         {
             for (int i = 0; i < function_words_tags.GetLength(0); i++)
                 for (int j = 0; j < function_words_tags.GetLength(1); j++)
@@ -50,7 +50,7 @@ namespace TranslationLib
             return result.ToString();
         }
 
-        private string verb_stem(string x)
+        public string verb_stem(string x)
         {
             var fileName = "C:/Users/Sonya/Desktop/VCR/TranslationSystem_git/TranslationSystem/TranslationLib/verb_stem.py";
             ProcessStartInfo start = new ProcessStartInfo(@"C:\Users\Sonya\AppData\Local\Programs\Python\Python36\python.exe", fileName);
@@ -89,7 +89,7 @@ namespace TranslationLib
                 if (!string.IsNullOrEmpty(f))
                 {
                     w.POSTag = f;
-                    if (f == "LIKE")
+                    if (f == "LIKE" || f == "ABOUT")
                     {
                         indexLike = wlist.IndexOf(w);
                     }
@@ -130,28 +130,40 @@ namespace TranslationLib
                 }
             }
 
+            if (wlist[0].Word == "Whose")
+                wlist[1].POSTag = "NP";
+
             for (int i = 0; i < wlist.Count - 1; i++)
             {
                 if (wlist[i].Word == "of")
                     wlist[i + 1].POSTag = "NP";
 
-                if (wlist[i].Word == "a" || wlist[i].Word == "an" || wlist[i].Word == "the")
+                if (wlist[i].Word == "a" || wlist[i].Word == "an" || wlist[i].Word == "the" || wlist[i].Word == "with")
                     if (wlist[i + 1].POSTag != "N") wlist[i + 1].POSTag = "N";
+
+                if (i > 1 && wlist[i].Word == "is" && wlist[i - 1].POSTag == "NP")
+                {
+                    wlist[i + 1].POSTag = "NP";
+                    for (int j = i + 2; j < wlist.Count; j++)
+                        wlist[i + 1].Word += " " + wlist[j].Word;
+                    wlist.RemoveRange(i + 2, wlist.Count - i - 2);
+                }
             }
 
             lx.changeLx(wlist);
         }
 
         string[] rules = new string[] {
-            "S -> WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT VP OF NP VP|WHOSE NP VP",
-            "VP -> I|T NP|BE A|BE NP|VP AND VP|WITH NP|LIKE NP"  ,
+            "VP -> I|T NP|BE A|BE NP|VP AND VP|LIKE NP"  ,
             "NP -> P|AR Nom|Nom",
             "Nom -> AN|AN Rel",
             "AN -> N|A AN",
             "Rel -> WHO VP|NP T",
             "BE -> BEs|BEp",
-            "WHAT -> WHICH",
-            "OF -> WHO HAVE"
+            "OF -> WHO HAVE",
+            "WITH -> WHICH HAVE",
+            "WHOSE -> WHOs HAVE",
+            "S -> WHAT VP OF NP OF NP WITH NP VP|WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT VP OF NP VP|WHOSE NP VP"
         };
 
         string[,] function_words_tags = new string[,] {
@@ -159,8 +171,9 @@ namespace TranslationLib
            {"BEp", "are", "were", "" },
            {"AR", "a", "an", "the" },
            {"AND", "and", "", ""  },
-           {"WHO", "Who", "who", "" },
-           {"WHICH", "Which" , "", ""},
+           {"WHOs", "Who", "", "" },
+           {"WHO", "who", "", "" },
+           {"WHICH", "Which" , "which", ""},
            {"WHAT" , "What" , "", ""},
            {"OR", "or" , "", ""},
            {"OF", "of", "", ""},

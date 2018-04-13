@@ -33,6 +33,10 @@
             this.Question = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextQuest
@@ -46,19 +50,20 @@
             // Result
             // 
             this.Result.AutoSize = true;
-            this.Result.Location = new System.Drawing.Point(25, 152);
+            this.Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Result.Location = new System.Drawing.Point(12, 153);
             this.Result.Name = "Result";
-            this.Result.Size = new System.Drawing.Size(59, 13);
+            this.Result.Size = new System.Drawing.Size(103, 24);
             this.Result.TabIndex = 2;
             this.Result.Text = "Результат";
-
             // 
             // Question
             // 
             this.Question.AutoSize = true;
+            this.Question.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Question.Location = new System.Drawing.Point(12, 32);
             this.Question.Name = "Question";
-            this.Question.Size = new System.Drawing.Size(203, 13);
+            this.Question.Size = new System.Drawing.Size(359, 24);
             this.Question.TabIndex = 2;
             this.Question.Text = "Введите свой вопрос (на английском):";
             // 
@@ -66,12 +71,13 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(15, 180);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(891, 263);
+            this.richTextBox1.Size = new System.Drawing.Size(356, 263);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
             this.button1.Location = new System.Drawing.Point(712, 112);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(175, 41);
@@ -80,13 +86,56 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(539, 180);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(367, 263);
+            this.richTextBox2.TabIndex = 3;
+            this.richTextBox2.Text = "";
+            this.richTextBox2.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(534, 153);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Запрос";
+            this.label1.Visible = false;
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.Location = new System.Drawing.Point(1061, 180);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(367, 263);
+            this.richTextBox3.TabIndex = 3;
+            this.richTextBox3.Text = "";
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(377, 180);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(156, 47);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Показать запрос";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 455);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.richTextBox3);
+            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Question);
             this.Controls.Add(this.Result);
             this.Controls.Add(this.richTextQuest);
@@ -104,6 +153,10 @@
         private System.Windows.Forms.Label Question;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.Button button2;
     }
 }
 

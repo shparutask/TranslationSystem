@@ -37,6 +37,8 @@ namespace TranslationLib
                     {
                         var left = leftNode(top_level, r.left);
                         var node = rightNodes(tree[tree.Count - 1], r.right);
+                        if (r.left == "S" && node.Count != tree[tree.Count - 1].Count) continue;
+
                         if (node.Contains(n))
                         {
                             if (left == null || left.word != null)
@@ -45,8 +47,12 @@ namespace TranslationLib
                             {
                                 if (left.children == null)
                                     left.children = new List<ParseNode>();
-                                if (!left.children.Contains(n) && node.Contains(n))
-                                    left.children.Add(n);
+                                if (!left.children.Contains(n))
+                                    if (leftContains(left.children, n))// && node.Contains(n))
+                                        left.children.Add(n);
+                                    else
+                                        top_level.Add(new ParseNode { value = r.left, children = node });
+
                             }
                             isAdded = true;
                         }
@@ -121,6 +127,13 @@ namespace TranslationLib
             }
 
             return rights;
+        }
+
+        private bool leftContains(List<ParseNode> top_level, ParseNode value)
+        {
+            foreach (var n in top_level)
+                if (value == n) return true;
+            return false;
         }
     }
 }

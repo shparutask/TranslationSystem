@@ -1,6 +1,6 @@
 ﻿using TranslationLib;
 using System;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace ConsoleApplication
 {
@@ -8,48 +8,29 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
-            Translation t = new Translation();
-            string question = "What is the e-mail of Andrey";
-            string query = t.ToQuery(question);
-            using (SqlConnection sql_conn = new SqlConnection(@"Data Source = SOPHIESHPA\SQLEXPRESS; Initial Catalog = MIGRATION_EXPERT; Integrated Security = True"))
+            var t = new Translation();
+            var q = new QueryExecution();
+            List<string> queries = new List<string> {
+                                                     "What is the mail of Andrey", "What is the degree of Andrey",
+                                                     "What is the mail of expert who has a publication like my life", "What is the degree of expert who has a publication about my life",
+                                                     "What is the mail of expert of publication like my life", "What is the degree of expert of publication about my life",
+                                                     "What is the mail of author of publications with title like me", "What is the degree of author of publications with title like me",
+                                                     "What is the mail of author of publications which has a description like my life", "What is the degree of author of publications which has a references like Natural",
+                                                     "Who has the mail like sofish718@sdf.ru", "Who has the degree like Кандидат наук",
+                                                     "Whose mail is sofish718@sdf.ru", "Whose degree is Кандидат наук",
+                                                     "What is the mail of expert who has a publication which has a description like my life",
+                                                     "What is the degree of expert who has a publication which has a description like my life"
+                                                    };
+
+            string result = "";
+
+            foreach (var s in queries)
             {
-                sql_conn.Open();
-                var keys = sql_conn.CreateCommand();
-                keys.CommandText = query;
-                var m_keys = keys.ExecuteReader();
-                while (m_keys.Read())
-                {
-                    Console.WriteLine(m_keys[0].ToString());
-                }
+                result = t.ToQuery(s);
+                Console.WriteLine("\n" + q.ExecuteQuery(result) + "\n" + result);
             }
 
-            question = "What is the name of author of publication like my life";
-            query = t.ToQuery(question);
-            using (SqlConnection sql_conn = new SqlConnection(@"Data Source = SOPHIESHPA\SQLEXPRESS; Initial Catalog = MIGRATION_EXPERT; Integrated Security = True"))
-            {
-                sql_conn.Open();
-                var keys = sql_conn.CreateCommand();
-                keys.CommandText = query;
-                var m_keys = keys.ExecuteReader();
-                while (m_keys.Read())
-                {
-                    Console.WriteLine(m_keys[0].ToString());
-                }
-            }
-            
-            question = "What is the degree of expert who has a publication about andrey";
-            query = t.ToQuery(question);
-            using (SqlConnection sql_conn = new SqlConnection(@"Data Source = SOPHIESHPA\SQLEXPRESS; Initial Catalog = MIGRATION_EXPERT; Integrated Security = True"))
-            {
-                sql_conn.Open();
-                var keys = sql_conn.CreateCommand();
-                keys.CommandText = query;
-                var m_keys = keys.ExecuteReader();
-                while (m_keys.Read())
-                {
-                    Console.WriteLine(m_keys[0].ToString());
-                }
-            }
+            Console.WriteLine("Success!");
             Console.ReadKey();
         }
     }
