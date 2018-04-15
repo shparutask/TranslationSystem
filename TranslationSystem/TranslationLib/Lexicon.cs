@@ -9,12 +9,12 @@ namespace TranslationLib
 
         List<string>[] language_tags = new List<string>[] { new List<string>() {"FIRST_NAME.NAME_ENG", "name" },
 
-                                                            new List<string>() {"PUBLICATION", "publication", "publications", "work"},
-                                                            new List<string>() {"PUBLICATION.TITLE", "title"},
-                                                            new List<string>() {"PUBLICATION.DESCRIPTION_ENG", "description"},
-                                                            new List<string>() {"PUBLICATION.REFERENCE", "reference", "references"},
+                                                            new List<string>() {"PUBLICATION", "publication", "publications", "work", "works"},
+                                                            new List<string>() {"PUBLICATION.TITLE", "title", "titles"},
+                                                            new List<string>() {"PUBLICATION.DESCRIPTION_ENG", "description", "descriptions"},
+                                                            new List<string>() {"PUBLICATION.REFERENCE", "reference", "references", "literature"},
 
-                                                            new List<string>() {"E_MAIL.MAIL", "mail", "e-mail", "E_mail", "mails", "emails" },
+                                                            new List<string>() {"E_MAIL.MAIL", "mail", "e-mail", "E_mail", "mails", "emails", "emails" },
 
                                                             new List<string>() {"TELEPHONE.PHONE", "phone", "telephone", "phones"},
 

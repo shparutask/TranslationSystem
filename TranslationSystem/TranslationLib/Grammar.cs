@@ -1,6 +1,4 @@
-﻿using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
 
@@ -60,13 +58,6 @@ namespace TranslationLib
                     return result.Substring(0, result.Length - 2);
                 }
             }
-            /*ScriptEngine engine = Python.CreateEngine();
-            ScriptScope scope = engine.CreateScope();
-
-            engine.ExecuteFile("../../../TranslationLib/noun_stem.py", scope);
-            dynamic function = scope.GetVariable("noun_stem");
-            dynamic result = function(x);
-            return result.ToString();*/
         }
 
         public string verb_stem(string x)
@@ -104,15 +95,11 @@ namespace TranslationLib
                 if ('A' <= w.Word[0] && w.Word[0] <= 'Z' && isFunction(w.Word) == "")
                     w.POSTag = "P";
 
-                string stem = noun_stem(w.Word);
-                if (string.IsNullOrEmpty(stem))
-                    w.POSTag = "N";
-
                 string f = isFunction(w.Word);
                 if (!string.IsNullOrEmpty(f))
                 {
                     w.POSTag = f;
-                    if (f == "LIKE" || f == "ABOUT")
+                    if (f == "LIKE")
                     {
                         indexLike = wlist.IndexOf(w);
                     }
@@ -164,12 +151,19 @@ namespace TranslationLib
                 if (wlist[i].Word == "a" || wlist[i].Word == "an" || wlist[i].Word == "the" || wlist[i].Word == "with")
                     if (wlist[i + 1].POSTag != "N") wlist[i + 1].POSTag = "N";
 
-                if (i > 1 && wlist[i].Word == "is" && wlist[i - 1].POSTag == "NP")
+                if (i > 1 && wlist[i].Word == "is" && wlist[i - 1].POSTag == "NP" && string.IsNullOrEmpty(wlist[i + 1].POSTag))
                 {
                     wlist[i + 1].POSTag = "NP";
                     for (int j = i + 2; j < wlist.Count; j++)
                         wlist[i + 1].Word += " " + wlist[j].Word;
                     wlist.RemoveRange(i + 2, wlist.Count - i - 2);
+                }
+
+                if (string.IsNullOrEmpty(wlist[i].POSTag))
+                {
+                    string stem = noun_stem(wlist[i].Word);
+                    if (string.IsNullOrEmpty(stem))
+                        wlist[i].POSTag = "NP";
                 }
             }
 
@@ -177,7 +171,7 @@ namespace TranslationLib
         }
 
         string[] rules = new string[] {
-            "VP -> I|T NP|BE A|VP AND VP|LIKE NP|BE NP",            
+            "VP -> I|T NP|BE A|VP AND VP|LIKE NP|BE NP",
             "NP -> P|AR Nom|Nom",
             "Nom -> AN|AN Rel",
             "AN -> N|A AN",
@@ -186,7 +180,7 @@ namespace TranslationLib
             "OF -> WHO HAVE",
             "WITH -> WHICH HAVE",
             "WHOSE -> WHOs HAVE",
-            "S -> WHAT VP OF NP OF NP WITH NP VP|WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT VP OF NP VP|WHOSE NP VP|WHAT VP THERE"
+            "S -> WHAT VP OF NP WITH NP VP|WHAT VP OF NP OF NP WITH NP VP|WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT VP OF NP VP|WHOSE NP VP|WHAT VP THERE|WHOSE NP BE VP"
         };
 
         string[,] function_words_tags = new string[,] {
@@ -196,8 +190,8 @@ namespace TranslationLib
            {"AND", "and", "", ""  },
            {"WHOs", "Who", "", "" },
            {"WHO", "who", "", "" },
-           {"WHICH", "Which" , "which", ""},
-           {"WHAT" , "What" , "", ""},
+           {"WHICH", "which", "" , ""},
+           {"WHAT" , "What" , "Which" , ""},
            {"OR", "or" , "", ""},
            {"OF", "of", "", ""},
            {"LIKE", "like", "about", ""},

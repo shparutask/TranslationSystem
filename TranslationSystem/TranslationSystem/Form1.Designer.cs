@@ -51,7 +51,7 @@
             // 
             this.Result.AutoSize = true;
             this.Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Result.Location = new System.Drawing.Point(12, 153);
+            this.Result.Location = new System.Drawing.Point(12, 124);
             this.Result.Name = "Result";
             this.Result.Size = new System.Drawing.Size(103, 24);
             this.Result.TabIndex = 2;
@@ -70,7 +70,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.button1.Location = new System.Drawing.Point(719, 7);
+            this.button1.Location = new System.Drawing.Point(728, 112);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(178, 47);
             this.button1.TabIndex = 4;
@@ -89,7 +89,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(719, 122);
+            this.button2.Location = new System.Drawing.Point(380, 125);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(178, 52);
             this.button2.TabIndex = 6;
@@ -99,9 +99,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 180);
+            this.richTextBox1.Location = new System.Drawing.Point(568, 165);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(898, 263);
+            this.richTextBox1.Size = new System.Drawing.Size(338, 278);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             this.richTextBox1.Visible = false;
@@ -110,7 +110,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 153);
+            this.label1.Location = new System.Drawing.Point(574, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 24);
             this.label1.TabIndex = 2;
@@ -119,9 +119,9 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(16, 180);
+            this.richTextBox2.Location = new System.Drawing.Point(12, 165);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(894, 263);
+            this.richTextBox2.Size = new System.Drawing.Size(359, 278);
             this.richTextBox2.TabIndex = 7;
             this.richTextBox2.Text = "";
             // 

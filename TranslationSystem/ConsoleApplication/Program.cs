@@ -19,18 +19,18 @@ namespace ConsoleApplication
                                                      "Who has the mail like sofish718@sdf.ru", "Who has the degree like Кандидат наук",
                                                      "Whose mail is sofish718@sdf.ru", "Whose degree is Кандидат наук",
                                                      "What is the mail of expert who has a publication which has a description like my life",
-                                                     "What is the degree of expert who has a publication which has a description like my life"
+                                                     "What is the degree of expert who has a publication which has a description like my life",
+                                                     "What are experts there?", "What are mails there?", "What are phones there?", "What are publications there?",
+                                                     "What are titles of publications?", "What are descriptions of publications?", "Whose publication is about my life?",
+                                                     "Which are references of life?", "Which are references of publication with title like me?","Which are literature of publication with title like me?"
                                                     };
-
             string result = "";
-
             foreach (var s in queries)
             {
                 result = t.ToQuery(s);
                 q.ExecuteQuery(result);
                 Console.WriteLine(s + "\n" + q.Result);
             }
-
             Console.WriteLine("Success!");
             Console.ReadKey();
         }
