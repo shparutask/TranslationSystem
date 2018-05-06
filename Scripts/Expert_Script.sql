@@ -1,4 +1,6 @@
-use MIGRATION_CENTER
+create database MIGRATION_EXPERT
+
+use [MIGRATION_EXPERT]
 
 CREATE TABLE  LAST_NAME(	
     ID int NOT NULL Identity(1, 1), 
