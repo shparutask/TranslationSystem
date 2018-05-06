@@ -22,6 +22,11 @@ namespace TranslationLib
 
             while (tree[tree.Count - 1].Count > 1)
             {
+                if (tree.Count > 50)
+                {
+                    root = null;
+                    return;
+                }
                 top_level = new List<ParseNode>();
                 int count = tree[tree.Count - 1].Count;
                 var child = new List<ParseNode>();

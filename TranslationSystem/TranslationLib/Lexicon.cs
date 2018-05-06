@@ -12,14 +12,14 @@ namespace TranslationLib
                                                             new List<string>() {"PUBLICATION", "publication", "publications", "work", "works"},
                                                             new List<string>() {"PUBLICATION.TITLE", "title", "titles"},
                                                             new List<string>() {"PUBLICATION.DESCRIPTION_ENG", "description", "descriptions"},
-                                                            new List<string>() {"PUBLICATION.REFERENCE", "reference", "references", "literature"},
+                                                            new List<string>() {"PUBLICATION.REFERENCE", "reference", "references", "literature", "used_literature"},
 
                                                             new List<string>() {"E_MAIL.MAIL", "mail", "e-mail", "E_mail", "mails", "emails", "emails" },
 
                                                             new List<string>() {"TELEPHONE.PHONE", "phone", "telephone", "phones"},
 
                                                             new List<string>() {"EXPERT", "author", "expert", "experts", "authors" },
-                                                            new List<string>() {"EXPERT.DEGREE", "degree" },
+                                                            new List<string>() {"EXPERT.DEGREE", "degree", "degrees" },
         };
 
         List<TaggedWord> lx = new List<TaggedWord>();

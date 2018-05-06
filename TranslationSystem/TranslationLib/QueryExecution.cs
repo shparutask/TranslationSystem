@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System;
 
 namespace TranslationLib
 {
@@ -6,17 +7,44 @@ namespace TranslationLib
     {
         public string Result { get; set; }
         public string ResultQuery { get; set; }
+        string db, server;
 
-        public void ExecuteQuery(string query)
+        public QueryExecution(string db, string server)
         {
+            this.db = db;
+            this.server = server;
+        }
+
+        public void ExecuteQuery(string question)
+        {
+            string connString = @"Data Source = .\" + server + "; Initial Catalog = " + db + "; Integrated Security = True";
+            Translation t = new Translation(connString);
+
+            string query = t.ToQuery(question);
+            if (query == "err")
+            {
+                Result = "Sorry, an error while executing query";
+                return;
+            }
+
             string result = "";
-            using (SqlConnection sql_conn = new SqlConnection(@"Data Source = SOPHIESHPA\SQLEXPRESS; Initial Catalog = MIGRATION_EXPERT; Integrated Security = True"))
+            using (SqlConnection sql_conn = new SqlConnection(connString))
             {
                 ResultQuery = query;
                 sql_conn.Open();
                 var keys = sql_conn.CreateCommand();
                 keys.CommandText = query;
-                var m_keys = keys.ExecuteReader();
+                SqlDataReader m_keys = null;
+
+                try
+                {
+                    m_keys = keys.ExecuteReader();
+                }
+                catch (Exception ex)
+                {
+                    Result = "Sorry, an error while executing query: " + ex.Message;
+                    return;
+                }
 
                 int count = 0;
                 while (m_keys.Read())

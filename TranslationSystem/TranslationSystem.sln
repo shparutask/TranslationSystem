@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationSystem", "TranslationSystem\TranslationSystem.csproj", "{16F5295C-C5AC-42EF-A7B7-9F869C7A74E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationLib", "TranslationLib\TranslationLib.csproj", "{463A78F5-27A5-41A1-B565-7B09FA98741E}"
 EndProject
 Global
@@ -25,14 +23,6 @@ Global
 		{16F5295C-C5AC-42EF-A7B7-9F869C7A74E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16F5295C-C5AC-42EF-A7B7-9F869C7A74E6}.Release|x86.ActiveCfg = Release|Any CPU
 		{16F5295C-C5AC-42EF-A7B7-9F869C7A74E6}.Release|x86.Build.0 = Release|Any CPU
-		{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}.Debug|x86.Build.0 = Debug|Any CPU
-		{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}.Release|x86.ActiveCfg = Release|Any CPU
-		{729203C5-B05D-4FC6-9634-DBD46A2B4FB0}.Release|x86.Build.0 = Release|Any CPU
 		{463A78F5-27A5-41A1-B565-7B09FA98741E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{463A78F5-27A5-41A1-B565-7B09FA98741E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{463A78F5-27A5-41A1-B565-7B09FA98741E}.Debug|x86.ActiveCfg = Debug|Any CPU

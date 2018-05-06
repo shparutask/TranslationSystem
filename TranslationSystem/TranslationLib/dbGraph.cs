@@ -99,8 +99,6 @@ namespace TranslationLib
                          прочитать все строки, возврашенные в результате выполнения запроса
                          CommandBehavior.CloseConnection - закрываем соединение после запроса
                          */
-
-
                         using (SqlDataReader dr = cmd.ExecuteReader())
                         {
                             //цикл по всем столбцам полученной в результате запроса таблицы

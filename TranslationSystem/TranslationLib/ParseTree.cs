@@ -9,6 +9,11 @@ namespace TranslationLib
 
         public ParseTree(ParseNode root)
         {
+            if(root == null)
+            {
+                tree = null;
+                return;
+            }
             this.root = root;
             if (root.children != null)
                 foreach (var s in root.children)
