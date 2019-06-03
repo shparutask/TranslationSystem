@@ -20,7 +20,7 @@ namespace TranslationLib
 
             tree.Add(top_level);
 
-            while (tree[tree.Count - 1].Count > 1)
+            while (tree[tree.Count - 1][0].value != "S")
             {
                 if (tree.Count > 50)
                 {

@@ -15,8 +15,13 @@ namespace TranslationLib
             this.server = server;
         }
 
-        public void ExecuteQuery(string question)
+        public void ExecuteQuery(string question, string language)
         {
+            YandexTranslator yt = new YandexTranslator();
+            if (question.IndexOf('?') == -1)
+                question += "?";
+            if (language == "Русский")
+                question = yt.Translate(question, "ru-en");
             string connString = @"Data Source = .\" + server + "; Initial Catalog = " + db + "; Integrated Security = True";
             Translation t = new Translation(connString);
 
@@ -58,7 +63,7 @@ namespace TranslationLib
                     result += "\n";
                 }
             }
-            Result = result.Substring(0, result.Length - 1);
+            Result = result.Substring(0, result.Length);
         }
     }
 }

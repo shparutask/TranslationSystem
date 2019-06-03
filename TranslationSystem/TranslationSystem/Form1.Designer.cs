@@ -36,6 +36,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // richTextQuest
@@ -62,9 +63,10 @@
             this.Question.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Question.Location = new System.Drawing.Point(8, 9);
             this.Question.Name = "Question";
-            this.Question.Size = new System.Drawing.Size(359, 24);
+            this.Question.Size = new System.Drawing.Size(390, 24);
             this.Question.TabIndex = 2;
-            this.Question.Text = "Введите свой вопрос (на английском):";
+            this.Question.Text = "Введите свой вопрос (enter your question):";
+            this.Question.Click += new System.EventHandler(this.Question_Click);
             // 
             // button1
             // 
@@ -116,12 +118,24 @@
             this.richTextBox2.TabIndex = 7;
             this.richTextBox2.Text = "";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Русский",
+            "English"});
+            this.comboBox1.Location = new System.Drawing.Point(753, 9);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(143, 21);
+            this.comboBox1.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 598);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -131,7 +145,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.richTextQuest);
             this.Name = "Form1";
-            this.Text = "MIGRATION";
+            this.Text = "Санкт-Петербург (Saint-Petersburg)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -148,6 +162,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

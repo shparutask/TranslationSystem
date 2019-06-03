@@ -20,7 +20,7 @@ namespace TranslationSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            q.ExecuteQuery(richTextQuest.Text);
+            q.ExecuteQuery(richTextQuest.Text, comboBox1.SelectedItem.ToString());
             richTextBox2.Text = q.Result;
             richTextBox1.Text = q.ResultQuery;
         }
@@ -44,6 +44,11 @@ namespace TranslationSystem
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Question_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

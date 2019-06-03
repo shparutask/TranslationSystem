@@ -32,7 +32,10 @@ namespace TranslationLib
             lx.getAll().Clear();
             int questmark = question.IndexOf('?');
 
-            string[] q = questmark == -1 ? question.Split() : question.Substring(0, questmark).Split();
+            if (question.IndexOf('?') != -1)
+                question = question.Substring(0, question.Length - 1);
+
+            string[] q = question.Split();
             bool IsAdded = false;
 
             foreach (var w in q)
@@ -112,7 +115,13 @@ namespace TranslationLib
                         return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\n" + AbstractSemanticInterpetation(tree.tree[3]).Split(';')[0] + " like " + AbstractSemanticInterpetation(tree.tree[3]).Split(';')[1];
                     return AbstractSemanticInterpetation(tree.tree[1]) + " ?v\ntype " + AbstractSemanticInterpetation(tree.tree[3]);
 
+
+                case "S -> WHAT NP VP":
+                    return AbstractSemanticInterpetation(tree.tree[0]) + " ?v\ntype " + AbstractSemanticInterpetation(tree.tree[1]) + "\n";
+
                 case "S -> WHAT VP THERE":
+                case "S -> WHAT VP":
+                case "S -> WHAT NP":
                     return AbstractSemanticInterpetation(tree.tree[1]) + " ?v";
 
                 case "S -> WHAT VP OF NP OF NP VP":
@@ -134,6 +143,7 @@ namespace TranslationLib
                     return AbstractSemanticInterpetation(tree.tree[0]);
 
                 case "NP -> AR Nom":
+                case "NP -> ANSO NP":
                     return AbstractSemanticInterpetation(tree.tree[1]);
 
                 case "Nom -> AN":
@@ -160,50 +170,40 @@ namespace TranslationLib
             foreach (var s in sems)
             {
                 var words = s.Split(' ');
-
-                if (words[0] == "EXPERT")
-                {
-                    select = sems.Length == 1 ? "DEGREE  " : "EXPERT.*";
-                    tables.Add(words[0]);
-                }
-
+                if (words[0] == "type")
+                    if (!tables.Contains(words[1])) tables.Add(words[1]); else { }
                 else
-                {
-                    if (words[0] == "type")
-                        if (!tables.Contains(words[1])) tables.Add(words[1]); else { }
-                    else
                     if (words.Length > 1)
+                {
+                    if (words[1] == "?v")
                     {
-                        if (words[1] == "?v")
+                        var w = words[0].Split('.');
+                        if (w[1].ToLower() != "id")
                         {
-                            var w = words[0].Split('.');
-                            if (w.Length > 1)
-                            {
-                                if (!tables.Contains(w[0])) tables.Add(w[0]);
-                                select += words[0] + ", ";
-                            }
-                            else
-                            {
-                                if (!tables.Contains(words[0])) tables.Add(words[0]);
-                                select += words[0] + ".*, ";
-                            }
+                            if (!tables.Contains(w[0])) tables.Add(w[0]);
+                            select += words[0] + ", ";
                         }
-
                         else
                         {
-                            string value = "";
-                            int indexLike = -1;
-                            for (int i = 0; i < words.Length - 1; i++)
-                            {
-                                if (words[i] == "like")
-                                    indexLike = i;
-                                else
-                                    value += " " + words[i];
-                            }
-                            if (indexLike == -1 && !string.IsNullOrEmpty(value) && Int32.TryParse(value.Substring(1, value.Length - 1), out indexLike)) wheres.Add(words[words.Length - 1] + " = " + indexLike.ToString());
-                            else wheres.Add(words[words.Length - 1] + " like '%" + value.Substring(1, value.Length - 1) + "%'");
-                            if (!tables.Contains(words[words.Length - 1].Substring(0, words[words.Length - 1].IndexOf('.')))) tables.Add(words[words.Length - 1].Substring(0, words[words.Length - 1].IndexOf('.')));
+                            if (!tables.Contains(w[0])) tables.Add(w[0]);
+                            select += w[0] + ".*, ";
                         }
+                    }
+
+                    else
+                    {
+                        string value = "";
+                        int indexLike = -1;
+                        for (int i = 0; i < words.Length - 1; i++)
+                        {
+                            if (words[i] == "like")
+                                indexLike = i;
+                            else
+                                value += " " + words[i];
+                        }
+                        if (indexLike == -1 && !string.IsNullOrEmpty(value) && Int32.TryParse(value.Substring(1, value.Length - 1), out indexLike)) wheres.Add(words[words.Length - 1] + " = " + indexLike.ToString());
+                        else wheres.Add(words[words.Length - 1] + " like '%" + value.Substring(1, value.Length - 1) + "%'");
+                        if (!tables.Contains(words[words.Length - 1].Substring(0, words[words.Length - 1].IndexOf('.')))) tables.Add(words[words.Length - 1].Substring(0, words[words.Length - 1].IndexOf('.')));
                     }
                 }
             }

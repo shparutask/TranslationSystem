@@ -81,7 +81,7 @@ namespace TranslationLib
             if (wlist[0].Word == "Whose")
                 wlist[1].POSTag = "NP";
 
-            for (int i = 0; i < wlist.Count - 1; i++)
+            for (int i = 0; i < wlist.Count; i++)
             {
                 if (wlist[i].Word == "of")
                     wlist[i + 1].POSTag = "NP";
@@ -109,21 +109,21 @@ namespace TranslationLib
 
         string[] rules = new string[] {
             "VP -> T NP|BE A|VP AND VP|LIKE NP|BE NP|NP BE I",
-            "NP -> P|AR Nom|Nom",
+            "NP -> P|AR Nom|Nom|ANSO NP",
             "Nom -> AN|AN Rel",
             "AN -> N|A AN",
             "Rel -> WHO VP|NP T",
-            "BE -> BEs|BEp",
+            "WHAT -> BE THERE",
             "OF -> WHO HAVE",
             "WITH -> WHICH HAVE",
             "WHOSE -> WHOs HAVE|WHOSE I",
-            "S -> WHAT VP OF NP WITH NP VP|WHAT VP OF NP OF NP WITH NP VP|WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT QP OF NP|WHAT VP OF NP VP|WHOSE NP VP|WHAT VP THERE|WHOSE NP BE VP|WHOSE NP WITH NP VP"
+            "S -> WHAT VP OF NP WITH NP VP|WHAT VP OF NP OF NP WITH NP VP|WHAT VP OF NP OF NP VP|WHAT VP OF NP|WHAT QP OF NP|WHAT VP OF NP VP|WHOSE NP VP|WHAT VP HERE|WHAT VP|WHOSE NP BE VP|WHOSE NP WITH NP VP|WHAT NP VP"
         };
 
         string[,] function_words_tags = new string[,] {
-           {"BEs", "is", "was", "" },
-           {"BEp", "are", "were", "" },
+           {"BE", "is", "Are", "are" },
            {"AR", "a", "an", "the" },
+           {"ANSO", "any", "some", "Any"  },
            {"AND", "and", "", ""  },
            {"WHOs", "Who", "", "" },
            {"WHO", "who", "", "" },
@@ -131,10 +131,11 @@ namespace TranslationLib
            {"WHAT" , "What" , "Which" , ""},
            {"OR", "or" , "", ""},
            {"OF", "of", "by", ""},
-           {"LIKE", "like", "about", ""},
+           {"LIKE", "like", "about", "in"},
            {"WITH", "with", "", ""},
-           {"WHOSE", "Whose", "", ""},
            {"THERE", "There", "there", ""},
+           {"WHOSE", "Whose", "", ""},
+           {"HERE", "Here", "here", ""},
            {"HAVE", "has", "have", ""},
            {"I", "written", "", ""}
            };
