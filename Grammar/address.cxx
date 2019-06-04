@@ -5,8 +5,8 @@ Num_H -> AnyWord<wff=/[1-9][0-9]*/>;
 
 HouseNumber -> Num_H | HouseDescr Num_H | HouseDescr Num_H;
 
-StreetW -> 'проспект' | 'проезд' | 'улица' | 'шоссе';
-StreetSokr -> 'пр' | 'просп' | 'пр-д' | 'ул' | 'ш';
+StreetW -> 'проспект' | 'проезд' | 'улица' | 'шоссе' | 'площадь'| 'набережная';
+StreetSokr -> 'пр' | 'просп' | 'пр-д' | 'ул' | 'ш'| 'пл'| 'наб';
 
 StreetDescr -> StreetW | StreetSokr;
 
