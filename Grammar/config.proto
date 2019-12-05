@@ -3,9 +3,9 @@ encoding "utf8";
 TTextMinerConfig {
     Dictionary = "dic.gzt";
 
-    Input = {File = "test_input.txt"}
+	Input = {File = "in.txt"}
 
-    Output = {File = "output.txt"
+    Output = {File = "out.txt"
               Format = text}
 	
 	Articles = [{Name = "адрес"}, {Name = "время"}, {Name = "музей"}, {Name = "парк"}, {Name = "усадьба"}, {Name = "памятник"} ]    
