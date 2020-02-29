@@ -1,0 +1,15 @@
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\bin\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\bin\Debug\TranslateSQL.pdb
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.pdb
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\bin\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\bin\Debug\TranslateSQL.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\TranslateSQL\bin\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\TranslateSQL\bin\Debug\TranslateSQL.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.pdb

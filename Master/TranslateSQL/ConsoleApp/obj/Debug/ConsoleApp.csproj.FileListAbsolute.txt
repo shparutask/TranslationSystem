@@ -1,0 +1,30 @@
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.exe
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.pdb
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\QueryExecutionModule.dll
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\QueryExecutionModule.pdb
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\TranslateSQL.pdb
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.exe
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.exe
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.exe
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\QueryExecutionModule.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\QueryExecutionModule.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\bin\Debug\TranslateSQL.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.exe
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.exe
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\bin\Debug\QueryExecutionModule.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\bin\Debug\TranslateSQL.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\bin\Debug\QueryExecutionModule.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\bin\Debug\TranslateSQL.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache

@@ -1,0 +1,2 @@
+https://tech.yandex.ru/keys/?service=trnsl
+https://vscode.ru/prog-lessons/rabota-s-api-yandex-perevodchika.html

@@ -1,0 +1,9 @@
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\bin\Debug\QueryExecutionModule.dll
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\bin\Debug\QueryExecutionModule.pdb
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\obj\Debug\QueryExecutionModule.dll
+C:\Users\Sonya\Desktop\11_семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\obj\Debug\QueryExecutionModule.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\bin\Debug\QueryExecutionModule.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\bin\Debug\QueryExecutionModule.pdb
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\obj\Debug\QueryExecutionModule.csprojResolveAssemblyReference.cache
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\obj\Debug\QueryExecutionModule.dll
+C:\Users\Sonya\Desktop\12 семестр\ВКР\Осень 2020\TranslateSQL\QueryExecutionModule\obj\Debug\QueryExecutionModule.pdb
