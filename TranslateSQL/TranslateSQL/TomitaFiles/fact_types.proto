@@ -1,0 +1,39 @@
+import "base.proto";
+import "facttypes_base.proto";
+
+message Address: NFactType.TFact
+{
+   required string StreetName = 1 [ default = "Где" ];
+   optional string HouseNumber = 2;
+   optional string Area = 3;
+}
+
+message Museum: NFactType.TFact
+{
+   required string NAME = 1; 
+   //optional string DESCRIPTION = 2;
+   optional string OPENING_HOURS = 2;
+   optional string CLOSING_TIME = 3;
+   optional string WORKING_DAYS = 4;
+}
+
+message Park: NFactType.TFact
+{
+   required string NAME = 1;
+   optional string DESCRIPTION = 2;
+   optional string OPENING_HOURS = 3;
+   optional string CLOSING_TIME = 4;
+   optional string WORKING_DAYS = 5;
+}
+
+message Monument: NFactType.TFact
+{
+   required string NAME = 1;
+   optional string DESCRIPTION = 2;
+}
+
+message Homestead: NFactType.TFact
+{
+   required string NAME = 1;
+   optional string DESCRIPTION = 2;
+}
