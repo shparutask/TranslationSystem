@@ -1,0 +1,11 @@
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.exe
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\bin\Debug\ConsoleApp.pdb
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\bin\Debug\QueryExecutionModule.dll
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\bin\Debug\TranslateSQL.dll
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\bin\Debug\QueryExecutionModule.pdb
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\bin\Debug\TranslateSQL.pdb
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.csprojAssemblyReference.cache
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.csproj.CopyComplete
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.exe
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\ConsoleApp\obj\Debug\ConsoleApp.pdb

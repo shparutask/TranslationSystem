@@ -1,0 +1,22 @@
+﻿encoding "utf8";
+
+TTextMinerConfig {
+    Dictionary = "dic.gzt";
+
+	Input = {File = "in.txt"}
+
+    Output = {File = "out.txt"
+              Format = text}
+	
+	Articles = [{Name = "адрес"}, {Name = "музей"}, {Name = "парк"}, {Name = "усадьба"}, {Name = "памятник"} ]    
+	
+	Facts = [
+	{Name = "Address"},
+	{Name = "Museum"},
+	{Name = "Park"},
+	{Name = "Monument"},
+	{Name = "Homestead"}
+	]
+	
+	PrettyOutput = "pretty.html"
+}

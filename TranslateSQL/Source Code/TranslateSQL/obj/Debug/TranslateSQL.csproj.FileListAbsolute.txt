@@ -1,0 +1,5 @@
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\TranslateSQL\bin\Debug\TranslateSQL.dll
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\TranslateSQL\bin\Debug\TranslateSQL.pdb
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.csprojAssemblyReference.cache
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.dll
+C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\TranslateSQL\obj\Debug\TranslateSQL.pdb
