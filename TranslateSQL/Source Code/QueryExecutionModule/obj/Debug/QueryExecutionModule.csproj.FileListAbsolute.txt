@@ -1,5 +1,0 @@
-C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\QueryExecutionModule\bin\Debug\QueryExecutionModule.dll
-C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\QueryExecutionModule\bin\Debug\QueryExecutionModule.pdb
-C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\QueryExecutionModule\obj\Debug\QueryExecutionModule.csprojAssemblyReference.cache
-C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\QueryExecutionModule\obj\Debug\QueryExecutionModule.dll
-C:\Users\sofis\Desktop\12 семестр\ВКР\TranslationSystem\TranslateSQL\QueryExecutionModule\obj\Debug\QueryExecutionModule.pdb
