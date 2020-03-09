@@ -1,0 +1,32 @@
+﻿encoding "utf8";
+
+import "base.proto";
+import "articles_base.proto";
+
+import "fact_types.proto";
+
+TAuxDicArticle "адрес"
+{
+  key = {"tomita:address.cxx" type=CUSTOM}
+}
+
+TAuxDicArticle "музей"
+{
+  key = {"tomita:museum.cxx" type=CUSTOM}
+}
+
+TAuxDicArticle "парк"
+{
+  key = {"tomita:park.cxx" type=CUSTOM}
+}
+
+TAuxDicArticle "памятник"
+{
+  key = {"tomita:monument.cxx" type=CUSTOM}
+}
+
+TAuxDicArticle "усадьба"
+{
+  key = {"tomita:Homestead.cxx" type=CUSTOM}
+}
+

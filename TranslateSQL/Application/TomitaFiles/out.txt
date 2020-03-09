@@ -1,0 +1,9 @@
+Какой адрес дворца Меншикова 
+	Homestead
+	{
+		NAME = Меншикова
+	}
+	Address
+	{
+		StreetName = адрес
+	}
