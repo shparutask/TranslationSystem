@@ -1,6 +1,7 @@
 #encoding "utf8"
 
-Museum -> 'музей' | 'Mузей' | 'музея' | 'Mузея';
+MuseumWord -> 'музей' | 'Mузей' | 'музея' | 'Mузея' | 'Музеи' | 'музеи';
 MuseumDescr -> Adj<h-reg1> Adj* | (Adj<gram="род">) Noun<gram="род">;
 
-Mus -> MuseumDescr<gnc-agr[1]> interp (Museum.MuseumName) Museum<gnc-agr[1]> | Museum MuseumDescr interp (Museum.MuseumName::not_norm); 
+Mus -> MuseumDescr<gnc-agr[1]> interp(Museum.NAME) MuseumWord<gnc-agr[1]>;
+Mus -> MuseumWord MuseumDescr interp(Museum.NAME::not_norm);

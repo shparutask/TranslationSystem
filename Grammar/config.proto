@@ -1,4 +1,4 @@
-encoding "utf8";
+﻿encoding "utf8";
 
 TTextMinerConfig {
     Dictionary = "dic.gzt";
@@ -8,15 +8,14 @@ TTextMinerConfig {
     Output = {File = "out.txt"
               Format = text}
 	
-	Articles = [{Name = "адрес"}, {Name = "время"}, {Name = "музей"}, {Name = "парк"}, {Name = "усадьба"}, {Name = "памятник"} ]    
+	Articles = [{Name = "адрес"}, {Name = "музей"}, {Name = "парк"}, {Name = "усадьба"}, {Name = "памятник"} ]    
 	
 	Facts = [
 	{Name = "Address"},
 	{Name = "Museum"},
 	{Name = "Park"},
 	{Name = "Monument"},
-	{Name = "Homestead"},
-	{Name = "Time"}
+	{Name = "Homestead"}
 	]
 	
 	PrettyOutput = "pretty.html"

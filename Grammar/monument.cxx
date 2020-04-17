@@ -2,6 +2,6 @@
 
 Monum -> 'памятник' | 'Памятник' | 'памятника' | 'Памятника';
 descr -> AnyWord<gram="persn"> | AnyWord<gram="famn">;
-MonumDescr -> (AnyWord<gram="дат">) descr (AnyWord<gram="дат">);
+MonumDescr -> Adj<h-reg1> Adj* | (Adj<gram="род">) Noun<gram="род"> | (AnyWord<gram="дат">) descr (AnyWord<gram="дат">);
 
-Monument -> Monum MonumDescr interp (Monument.MonumentName::not_norm); 
+Monument -> MonumDescr<gnc-agr[1]> interp (Monument.NAME) Monum<gnc-agr[1]> | Monum MonumDescr interp (Monument.NAME::not_norm); 

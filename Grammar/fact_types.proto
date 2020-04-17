@@ -3,32 +3,37 @@ import "facttypes_base.proto";
 
 message Address: NFactType.TFact
 {
-   required string StreetName = 1;
-   optional string Descr = 2;
-   required string HouseNumber = 3;
-}
-
-message Time: NFactType.TFact
-{
-   required string HoursWork = 1;
+   required string StreetName = 1 [ default = "Где" ];
+   optional string HouseNumber = 2;
+   optional string Area = 3;
 }
 
 message Museum: NFactType.TFact
 {
-   required string MuseumName = 1;
+   required string NAME = 1; 
+   //optional string DESCRIPTION = 2;
+   optional string OPENING_HOURS = 2;
+   optional string CLOSING_TIME = 3;
+   optional string WORKING_DAYS = 4;
 }
 
 message Park: NFactType.TFact
 {
-   required string ParkName = 1;
+   required string NAME = 1;
+   optional string DESCRIPTION = 2;
+   optional string OPENING_HOURS = 3;
+   optional string CLOSING_TIME = 4;
+   optional string WORKING_DAYS = 5;
 }
 
 message Monument: NFactType.TFact
 {
-   required string MonumentName = 1;
+   required string NAME = 1;
+   optional string DESCRIPTION = 2;
 }
 
 message Homestead: NFactType.TFact
 {
-   required string HomesteadName = 1;
+   required string NAME = 1;
+   optional string DESCRIPTION = 2;
 }

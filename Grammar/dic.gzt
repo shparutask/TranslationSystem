@@ -1,4 +1,4 @@
-encoding "utf8";
+﻿encoding "utf8";
 
 import "base.proto";
 import "articles_base.proto";
@@ -8,11 +8,6 @@ import "fact_types.proto";
 TAuxDicArticle "адрес"
 {
   key = {"tomita:address.cxx" type=CUSTOM}
-}
-
-TAuxDicArticle "время"
-{
-  key = {"tomita:time.cxx" type=CUSTOM}
 }
 
 TAuxDicArticle "музей"
