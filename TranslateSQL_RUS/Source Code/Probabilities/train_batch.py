@@ -112,7 +112,6 @@ def evaluate(model, data, loss_function, name):
     for batch in data:
         sent, label = batch.text, batch.label
         label.data.sub_(1)
-        truth_res += list(label.data)
         model.batch_size = len(label.data)
         model.hidden = model.init_hidden()
         pred = model(sent)
@@ -124,6 +123,7 @@ def evaluate(model, data, loss_function, name):
     avg_loss /= len(data)
     acc = get_accuracy(truth_res, pred_res)
     print(name + ': loss %.2f acc %.1f' % (avg_loss, acc*100))
+    truth_res += list(label.data)
     return acc
 
 
@@ -144,7 +144,7 @@ args = args.parse_args()
 
 EPOCHS = 20
 USE_GPU = torch.cuda.is_available()
-EMBEDDING_DIM = 100
+EMBEDDING_DIM = 36
 HIDDEN_DIM = 36
 
 BATCH_SIZE = 5
@@ -187,7 +187,7 @@ with open(fname, "r", encoding="utf-8") as f:
         s = f.readline()
 
 # train model
-word2vec = Word2Vec(sentences, min_count=1)
+word2vec = Word2Vec(sentences, min_count=1, size = 36)
 
 # summarize vocabulary
 words = list(word2vec.wv.vocab)
@@ -204,7 +204,7 @@ model.embeddings.weight.data.copy_(torch.from_numpy(np.array(pretrained_embeddin
 
 
 best_model = model
-optimizer = optim.Adam(model.parameters(), lr=1e-3)
+optimizer = optim.Adam(model.parameters(), lr=1e-5)
 loss_function = nn.NLLLoss()
 
 print('Training...')

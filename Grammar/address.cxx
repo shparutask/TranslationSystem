@@ -6,9 +6,9 @@ Num_H -> AnyWord<wff=/[1-9][0-9]*/>;
 HouseNumber -> Num_H | HouseDescr Num_H | HouseDescr Num_H;
 
 StreetW -> 'проспект' | 'проезд' | 'улица' | 'шоссе' | 'площадь'| 'набережная';
-StreetSokr -> 'пр' | 'просп' | 'пр-д' | 'ул' | 'ш' | 'пл' | 'наб';
+StreetSokr -> 'пр' | 'просп' | 'пр-д' | 'ул' | 'ш' | 'пл' | 'наб' | 'г';
 
-StreetDescr -> StreetW | StreetSokr;
+StreetDescr -> StreetW | StreetSokr (Punct);
 
 StreetNameNoun -> (Adj<gnc-agr[1]>) Word<gnc-agr[1],rt> (Word<gram="род">) | Adj<gram="loc"> | Adj<gram="nom">;
 
@@ -20,7 +20,7 @@ NumberW -> NumberW_1 | NumberW_2 | NumberW_3;
 
 StreetNameAdj -> Adj<h-reg1> Adj* | NumberW<gnc-agr[1]> Adj<gnc-agr[1]>;
 
-Street -> StreetDescr StreetNameNoun<gram="род", h-reg1> interp (Address.StreetName);
+Street -> StreetDescr StreetNameNoun<h-reg1> interp (Address.StreetName);
 Street -> StreetDescr StreetNameNoun<gram="род", h-reg1> interp (Address.StreetName::not_norm)',' HouseNumber interp (Address.HouseNumber);
 Street -> StreetDescr StreetNameNoun<gram="им", h-reg1> interp (Address.StreetName::not_norm)',' HouseNumber interp (Address.HouseNumber);
 Street -> StreetNameAdj<gnc-agr[1]> interp (Address.StreetName) StreetW<gnc-agr[1]>',' HouseNumber interp (Address.HouseNumber);

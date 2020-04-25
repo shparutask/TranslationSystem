@@ -11,6 +11,11 @@ namespace TranslateSQL
     {
         public static string Build(string q)
         {
+            where = new StringBuilder();
+            select = new StringBuilder();
+            from = new StringBuilder();
+            tables.Clear();
+
             question = q.Replace("\"", string.Empty);
 
             getNamedEntities();
@@ -58,12 +63,13 @@ namespace TranslateSQL
                 if (entity.GetType() == typeof(Museum))
                 {
                     var museum = (Museum)entity;
-                    tables.Add("MUSEUMS"); 
-                    
+                    tables.Add("MUSEUMS");
+
                     if (!string.IsNullOrEmpty(museum.Name))
                     {
                         if (where.Length > 0)
                             where.Append(" OR");
+
                         where.Append($" MUSEUMS.NAME like '%{museum.Name}%'");
                     }
                     if (!string.IsNullOrEmpty(museum.Description))
@@ -132,8 +138,8 @@ namespace TranslateSQL
                 if (entity.GetType() == typeof(Monument))
                 {
                     var monument = (Monument)entity;
-                    tables.Add("MONUMENTS"); 
-                    
+                    tables.Add("MONUMENTS");
+
                     if (!string.IsNullOrEmpty(monument.Name))
                     {
                         if (where.Length > 0)
@@ -164,8 +170,11 @@ namespace TranslateSQL
             foreach (var element in dbModel.ProjectionTable.Where(x =>
                                                             x.NLTermList.Where(y => question.Split(' ').Contains(y)).Count() > 0))
             {
-                dbTerms.Add(element.DBTerm.Term);
-                tables.AddRange(element.DBTerm.Tables);
+                if (tables.Intersect(element.DBTerm.Tables).Count() == 0)
+                {
+                    dbTerms.Add(element.DBTerm.Term);
+                    tables.AddRange(element.DBTerm.Tables);
+                }
             }
 
             tables = tables.Distinct().ToList();
@@ -176,7 +185,7 @@ namespace TranslateSQL
         //Build SQL Query
         private static string buildSQLQuery(List<string> dbTerms)
         {
-            foreach (var term in dbTerms.Where(x => x.Contains("like '%") || x.Contains("=")))
+            foreach (var term in dbTerms.Where(x => !where.ToString().Contains(x) && x.Contains("like '%") || x.Contains("=")))
             {
                 if (where.Length == 0 || string.Equals(term, "OR") || string.Equals(term, "AND"))
                     where.Append($" {term}");
@@ -199,7 +208,7 @@ namespace TranslateSQL
             if (!string.IsNullOrEmpty(where.ToString()))
                 result.Append($" WHERE {where}");
 
-            return result.ToString();
+            return result.ToString().Replace("  ", " ");
         }
 
         private static string joinTables(List<string> tables)

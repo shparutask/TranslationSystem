@@ -9,7 +9,7 @@ namespace TranslateSQL.SemanticModel
 
         static List<string> prepositionList = new List<string>()
         {
-            "в", "на", "во", "с", "до"
+            "в", "на", "во", "с", "до", "В"
         };
 
         public static SemanticDBModel CreateSemanticDBModel()
@@ -26,19 +26,20 @@ namespace TranslateSQL.SemanticModel
                     var result = queryExecutor.ExecuteQuery($"SELECT {column} from {table.Name}");
 
                     foreach (var value in result.Split('\n'))
-                        foreach (var word in value.Split(' ').Where(x => !prepositionList.Contains(x) && 
-                                                    dbModel.ProjectionTable.FirstOrDefault(y => y.NLTermList.Contains(x) && 
-                                                                                           y.DBTerm.Tables.Contains(table.Name)) == null))
-                            dbModel.ProjectionTable.Add(new ProjectionElement
-                            {
-                                NLTermList = new List<string> { word },
+                        foreach (var word in value.Split(' '))
+                            if (!prepositionList.Contains(word) && 
+                                dbModel.ProjectionTable.Where(x => x.NLTermList.Contains(word)).Count() == 0)
 
-                                DBTerm = new DatalogTerm
+                                dbModel.ProjectionTable.Add(new ProjectionElement
                                 {
-                                    Term = $"{table.Name}.{column} like '%{word}%'",
-                                    Tables = new List<string>() { table.Name }
-                                }
-                            });
+                                    NLTermList = new List<string> { word },
+
+                                    DBTerm = new DatalogTerm
+                                    {
+                                        Term = $"{table.Name}.{column} like '%{word}%'",
+                                        Tables = new List<string>() { table.Name }
+                                    }
+                                });
                 }
             }
 
@@ -53,36 +54,12 @@ namespace TranslateSQL.SemanticModel
             {
                 NLTermList = new List<string>()
                 {
-                    "Какой адрес", "Адрес", "Где находится",
+                    "район", "Район", "районе", "Районе"
                 },
                 DBTerm = new DatalogTerm
                 {
-                    Term = "ADDRESSES.STREET, ADDRESSES.HOUSENUMBER, AREAS.NAME",
-                    Tables = new List<string>(){ "ADDRESSES", "AREAS" }
-                }
-            },
-
-            new ProjectionElement
-            {
-                NLTermList = new List<string>()
-                {
-                    "сколько", "Сколько"
-                },
-                DBTerm = new DatalogTerm
-                {
-                    Term = "Count(*)",
-                }
-            },
-
-            new ProjectionElement
-            {
-                NLTermList = new List<string>()
-                {
-                    "Во сколько", "открывается", "Как работает", "Открыт"
-                },
-                DBTerm = new DatalogTerm
-                {
-                    Term = "OPENING_HOURS"
+                    Term = "AREAS.NAME",
+                    Tables = new List<string>(){ "AREAS" }
                 }
             },
 
@@ -141,12 +118,36 @@ namespace TranslateSQL.SemanticModel
             {
                 NLTermList = new List<string>()
                 {
-                    "район", "Район", "районе", "Районе"
+                    "Какой адрес", "Адрес", "Где находится", "находится", "находятся"
                 },
                 DBTerm = new DatalogTerm
                 {
-                    Term = "AREAS.NAME",
-                    Tables = new List<string>(){ "AREAS" }
+                    Term = "ADDRESSES.STREET, ADDRESSES.HOUSENUMBER, AREAS.NAME",
+                    Tables = new List<string>(){ "ADDRESSES", "AREAS" }
+                }
+            },
+
+            new ProjectionElement
+            {
+                NLTermList = new List<string>()
+                {
+                    "сколько", "Сколько"
+                },
+                DBTerm = new DatalogTerm
+                {
+                    Term = "Count(*)",
+                }
+            },
+
+            new ProjectionElement
+            {
+                NLTermList = new List<string>()
+                {
+                    "Во сколько", "открывается", "Как работает", "Открыт"
+                },
+                DBTerm = new DatalogTerm
+                {
+                    Term = "OPENING_HOURS"
                 }
             },
 
