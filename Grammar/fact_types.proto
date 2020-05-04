@@ -3,7 +3,7 @@ import "facttypes_base.proto";
 
 message Address: NFactType.TFact
 {
-   required string StreetName = 1 [ default = "Где" ];
+   optional string StreetName = 1;
    optional string HouseNumber = 2;
    optional string Area = 3;
 }

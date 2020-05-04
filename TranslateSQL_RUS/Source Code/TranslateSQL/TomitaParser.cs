@@ -124,24 +124,29 @@ namespace TranslateSQL
         {
             var streetNameString = "\t\tStreetName = ";
             var houseNumString = "\t\tHouseNumber = ";
-            var address = new Address
-            {
-                StreetName = sr.ReadLine().Substring(streetNameString.Length)
-            };
+            var areaNameString = "\t\tArea = ";
+            var address = new Address();
 
-            if (string.Compare(address.StreetName, "район", true) == 0)
-            {
-                var areaNameString = "\t\tArea = ";
-                address.Area = sr.ReadLine().Substring(areaNameString.Length);
-            }
-            else
-            {
-                var s = sr.ReadLine();
+            var s = sr.ReadLine();
 
-                if (!string.Equals(s, "\t}"))
+            while (!string.Equals(s, "\t}"))
+            {
+                if (s.Contains(streetNameString))
+                {
+                    address.StreetName = s.Substring(streetNameString.Length);
+                }
+
+                if (s.Contains(houseNumString))
                 {
                     address.HouseNumber = s.Substring(houseNumString.Length);
                 }
+
+                if (s.Contains(areaNameString))
+                {
+                    address.Area = s.Substring(areaNameString.Length);
+                }
+
+                s = sr.ReadLine();
             }
 
             return address;
