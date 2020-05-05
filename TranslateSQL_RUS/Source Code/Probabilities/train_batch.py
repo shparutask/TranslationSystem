@@ -171,20 +171,15 @@ class Training():
                 s = f.readline()
 
     # train model
-        word2vec = Word2Vec(sentences, min_count=1, size = 231)
+        word2vec = Word2Vec(sentences, min_count=1, size = 286)
 
     # summarize vocabulary
         words = list(word2vec.wv.vocab)
 
-    #load_bin_vec('C:\\Users\\sofis\\Desktop\\pytorch-sentiment-classification-master\\data\\model.bin',
-    #word_to_idx)
         for word in words:
             pretrained_embeddings.append(word2vec[word])
 
-    # text_field.vocab.load_vectors(wv_type='', wv_dim=300)
-        model.embeddings.weight.data.copy_(torch.from_numpy(np.array(pretrained_embeddings)))
-    # model.embeddings.weight.data = text_field.vocab.vectors
-    # model.embeddings.embed.weight.requires_grad = False  
+        model.embeddings.weight.data.copy_(torch.from_numpy(np.array(pretrained_embeddings).T))
         best_model = model
         optimizer = optim.Adam(model.parameters(), lr=1e-5)
         loss_function = nn.NLLLoss()
@@ -220,7 +215,6 @@ class Training():
         timestamp = str(int(time.time()))
         best_dev_acc = 0.0
 
-
         self.text_field = data.Field(lower=True)
         self.label_field = data.Field(sequential=False)
         train_iter, dev_iter, test_iter = self.load_sst(self.text_field, self.label_field, BATCH_SIZE)
@@ -247,7 +241,7 @@ class Training():
                 s = f.readline()
 
     # train model
-        word2vec = Word2Vec(sentences, min_count=1, size = 231)
+        word2vec = Word2Vec(sentences, min_count=1, size = 286)
 
     # summarize vocabulary
         words = list(word2vec.wv.vocab)
@@ -255,7 +249,7 @@ class Training():
         for word in words:
             pretrained_embeddings.append(word2vec[word])
 
-        model.embeddings.weight.data.copy_(torch.from_numpy(np.array(pretrained_embeddings)))
+        model.embeddings.weight.data.copy_(torch.from_numpy(np.array(pretrained_embeddings).T))
         best_model = model
         optimizer = optim.Adam(model.parameters(), lr=1e-5)
         loss_function = nn.NLLLoss()
