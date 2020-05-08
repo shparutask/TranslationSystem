@@ -1,17 +1,21 @@
 ﻿using TranslateSQL;
 using QueryExecution;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace QueryResult
 {
     public static class QueryResultCreator
     {
-        public static string CreateQueryResult(string question)
+        public async static Task<string> CreateQueryResult(string question)
         {
-            var query = SQLQueryBuilder.Build(question);
-            var result = new QueryExecutor(ConnectionHelper.ConnectionString).ExecuteQuery(query);
+            return await Task.Run(() =>
+           {
+               var query = SQLQueryBuilder.Build(question);
+               var result = new QueryExecutor(ConnectionHelper.ConnectionString).ExecuteQuery(query);
 
-            return result;
+               return result;
+           });
         }
     }
 }

@@ -1,33 +1,18 @@
-from word2vec import Embedding
 import pandas as pd
-from gensim.models import Word2Vec
+import sys
 
-fname = "data\\dataset.tsv"
-question = "сколько галерей находится"
-emb_size = 250
+fname = "C:\\Users\\sofis\\Desktop\\12 семестр\\ВКР\\TranslationSystem\\TranslateSQL_RUS\\Source Code\\Stat_module\\data\\dataset.tsv"
 
-def get_embeddings(dataset):        
-    sentences = []
-    pretrained_embeddings = []
+def get_proposes(question):
+    dataset = pd.read_csv(fname, delimiter='\t')
+    dataset.columns = ['question', 'query', 'count']
+    dataset['count'] /= sum(dataset['count'])
 
-    for line in dataset.values.T[0]:
-        sentences.append(line.split())
+    propose_list = []
+    for cell in dataset.sort_values(['count'], ascending= False).values:
+        if question in cell[0]:
+            propose_list.append(cell[0])
 
-    return Word2Vec(sentences, min_count=1, size = emb_size).wv.vocab
+    return propose_list
 
-#get dataset
-dataset = pd.read_csv(fname, delimiter='\t')
-dataset.columns = ['question', 'query', 'count']
-dataset['count'] /= sum(dataset['count'])
-
-#get embeddings
-vocab = get_embeddings(dataset);
-
-dataset_prob_sort = dataset.sort_values(['count'], ascending= False)
-
-propose_list = []
-for cell in dataset_prob_sort.values:
-    if question in cell[0]:
-        propose_list.append(cell)
-
-print(propose_list)
+print(get_proposes(sys.argv[1]))
