@@ -42,7 +42,14 @@ namespace WebConsole
                     line = reader.ReadLine();
                 }
 
-                Set = Set.Select(x => new Element() { Question = x.Question, SQLQuery = x.SQLQuery, Probability = x.Probability / count }).ToList();
+                Set = Set.Select(x => new Element() 
+                { 
+                    Question = x.Question, 
+                    SQLQuery = x.SQLQuery, 
+                    Probability = x.Probability / count 
+                })
+                    .OrderByDescending(x => x.Probability)
+                    .ToList();
             }
         }
     }
