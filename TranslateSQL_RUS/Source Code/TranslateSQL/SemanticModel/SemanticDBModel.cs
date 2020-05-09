@@ -75,7 +75,7 @@ namespace TranslateSQL.SemanticModel
                 },
                 DBTerm = new DatalogTerm
                 {
-                    Term = "PARKS.*",
+                    Term = "PARKS.NAME",
                     Tables = new List<string>(){ "PARKS" }
                 }
             },
@@ -92,7 +92,7 @@ namespace TranslateSQL.SemanticModel
                 },
                 DBTerm = new DatalogTerm
                 {
-                    Term = "MONUMENTS.*",
+                    Term = "MONUMENTS.NAME",
                     Tables = new List<string>(){ "MONUMENTS" }
                 }
             },
@@ -109,7 +109,7 @@ namespace TranslateSQL.SemanticModel
                 },
                 DBTerm = new DatalogTerm
                 {
-                    Term = "MUSEUMS.*",
+                    Term = "MUSEUMS.NAME",
                     Tables = new List<string>(){ "MUSEUMS" }
                 }
             },

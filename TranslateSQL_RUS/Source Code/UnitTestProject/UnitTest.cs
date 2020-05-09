@@ -63,7 +63,7 @@ namespace UnitTestProject
         public void TestMethod5()
         {
             string testQuestion = "Какие музеи находятся на ул Садовая";
-            string expectedResult = "SELECT MUSEUMS.* FROM ADDRESSES join MUSEUMS on ADDRESSES.ID = MUSEUMS.ID_ADDRESS WHERE ADDRESSES.STREET like '%Садовая%'";
+            string expectedResult = "SELECT MUSEUMS.NAME FROM ADDRESSES join MUSEUMS on ADDRESSES.ID = MUSEUMS.ID_ADDRESS WHERE ADDRESSES.STREET like '%Садовая%'";
             string actualResult = SQLQueryBuilder.Build(testQuestion);
 
             Assert.AreEqual(expectedResult, actualResult);
@@ -76,7 +76,7 @@ namespace UnitTestProject
         public void TestMethod6()
         {
             string testQuestion = "Какие парки находятся в г Петергоф";
-            string expectedResult = "SELECT PARKS.* FROM ADDRESSES join PARKS on ADDRESSES.ID = PARKS.ID_ADDRESS WHERE ADDRESSES.STREET like '%Петергоф%'";
+            string expectedResult = "SELECT PARKS.NAME FROM ADDRESSES join PARKS on ADDRESSES.ID = PARKS.ID_ADDRESS WHERE ADDRESSES.STREET like '%Петергоф%'";
             string actualResult = SQLQueryBuilder.Build(testQuestion);
 
             Assert.AreEqual(expectedResult, actualResult);
@@ -89,59 +89,7 @@ namespace UnitTestProject
         public void TestMethod7()
         {
             string testQuestion = "Какие памятники находятся в Адмиралтейском районе";
-            string expectedResult = "SELECT MONUMENTS.* FROM AREAS join ADDRESSES on AREAS.ID = ADDRESSES.ID_AREA join MONUMENTS on ADDRESSES.ID = MONUMENTS.ID_ADDRESS WHERE AREAS.NAME like '%Адмиралтейский%'";
-            string actualResult = SQLQueryBuilder.Build(testQuestion);
-
-            Assert.AreEqual(expectedResult, actualResult);
-
-            string sqlResult = new QueryExecution.QueryExecutor(ConnectionHelper.ConnectionString).ExecuteQuery(actualResult);
-            Assert.IsFalse(sqlResult.Contains("error"));
-        }
-
-        [TestMethod]
-        public void TestMethod8()
-        {
-            string testQuestion = "Сколько музеев находится на ул Рубинштейна";
-            string expectedResult = "SELECT COUNT(*) FROM MUSEUMS join ADDRESSES on ADDRESSES.ID = MUSEUMS.ID_ADDRESS WHERE ADDRESSES.STREET like '%Рубинштейна%'";
-            string actualResult = SQLQueryBuilder.Build(testQuestion);
-
-            Assert.AreEqual(expectedResult, actualResult);
-
-            string sqlResult = new QueryExecution.QueryExecutor(ConnectionHelper.ConnectionString).ExecuteQuery(actualResult);
-            Assert.IsFalse(sqlResult.Contains("error"));
-        }
-
-        [TestMethod]
-        public void TestMethod9()
-        {
-            string testQuestion = "Сколько памятников находится в Ломоносове";
-            string expectedResult = "SELECT COUNT(*) FROM ADDRESSES join MONUMENTS on ADDRESSES.ID = MONUMENTS.ID_ADDRESS WHERE ADDRESSES.STREET like '%Ломоносов%'";
-            string actualResult = SQLQueryBuilder.Build(testQuestion);
-
-            Assert.AreEqual(expectedResult, actualResult);
-
-            string sqlResult = new QueryExecution.QueryExecutor(ConnectionHelper.ConnectionString).ExecuteQuery(actualResult);
-            Assert.IsFalse(sqlResult.Contains("error"));
-        }
-
-        [TestMethod]
-        public void TestMethod10()
-        {
-            string testQuestion = "Сколько парков в Петергофе";
-            string expectedResult = "SELECT COUNT(*) FROM ADDRESSES join PARKS on ADDRESSES.ID = PARKS.ID_ADDRESS WHERE ADDRESSES.STREET like '%Петергоф%'";
-            string actualResult = SQLQueryBuilder.Build(testQuestion);
-
-            Assert.AreEqual(expectedResult, actualResult);
-
-            string sqlResult = new QueryExecution.QueryExecutor(ConnectionHelper.ConnectionString).ExecuteQuery(actualResult);
-            Assert.IsFalse(sqlResult.Contains("error"));
-        }
-
-        [TestMethod]
-        public void TestMethod11()
-        {
-            string testQuestion = "Какие парки есть в Петергофе";
-            string expectedResult = "SELECT PARKS.NAME FROM ADDRESSES join PARKS on ADDRESSES.ID = PARKS.ID_ADDRESS WHERE ADDRESSES.STREET like '%Петергоф%'";
+            string expectedResult = "SELECT MONUMENTS.NAME FROM AREAS join ADDRESSES on AREAS.ID = ADDRESSES.ID_AREA join MONUMENTS on ADDRESSES.ID = MONUMENTS.ID_ADDRESS WHERE AREAS.NAME like '%Адмиралтейский%'";
             string actualResult = SQLQueryBuilder.Build(testQuestion);
 
             Assert.AreEqual(expectedResult, actualResult);

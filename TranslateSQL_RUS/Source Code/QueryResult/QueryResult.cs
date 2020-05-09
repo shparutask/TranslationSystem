@@ -2,6 +2,7 @@
 using QueryExecution;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace QueryResult
 {
@@ -16,6 +17,16 @@ namespace QueryResult
 
                return result;
            });
+        }
+
+        public async static Task<string> CreateQueryResultFromSQL(string sqlQuery)
+        {
+            return await Task.Run(() =>
+            {
+                var result = new QueryExecutor(ConnectionHelper.ConnectionString).ExecuteQuery(sqlQuery);
+
+                return result;
+            });
         }
     }
 }

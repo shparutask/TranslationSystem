@@ -7,14 +7,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Azure.Search;
 using System.Collections.Generic;
 using System.Linq;
+using QueryResult;
 
-namespace Typeahead.Controllers
+namespace WebConsole.Controllers
 {
     public class HomeController : Controller
     {
-        string pythonFilePath = @"C:\Users\sofis\Desktop\scores.py";
-        string pythonExeFilePath = @"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python.exe";
-
         public IActionResult Index()
         {
             return View();
@@ -129,10 +127,18 @@ namespace Typeahead.Controllers
         {
             InitSearch();
 
-            var result = await QueryResult.QueryResultCreator.CreateQueryResult(model.searchText);
+            string result = "";
+
+            if (Dataset.Set.Select(x => x.Question).Contains(model.searchText))
+            {
+                var query = Dataset.Set.FirstOrDefault(x => x.Question == model.searchText).SQLQuery;
+                result = await QueryResultCreator.CreateQueryResultFromSQL(query);
+            }
+            else
+                result = await QueryResultCreator.CreateQueryResult(model.searchText);
 
             // For efficiency, the search call should be asynchronous, so use SearchAsync rather than Search.
-            model.resultList = result.Split('\n').ToList();
+            model.resultList = result.Split('\r').ToList();
 
             // This variable communicates the total number of pages to the view.
             model.pageCount = (model.resultList.Count + GlobalVariables.ResultsPerPage - 1) / GlobalVariables.ResultsPerPage;
@@ -169,32 +175,12 @@ namespace Typeahead.Controllers
         {
             return await Task.Run(() =>
             {
-                var results = new List<string>();
-                var process = new Process();
-
-                process.StartInfo = new ProcessStartInfo()
-                {
-                    FileName = pythonExeFilePath,
-                    Arguments = $"{pythonFilePath} {question.ToLower()}",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    CreateNoWindow = true
-                };
-
-                process.Start();
-                process.StartInfo.StandardOutputEncoding = System.Text.UTF8Encoding.UTF8;
-
-                var outputText = process.StandardOutput.ReadLine();
-
-                while (!process.StandardOutput.EndOfStream)
-                {
-                    results.Add(outputText);
-                    outputText = process.StandardOutput.ReadLine();
-                }
-
-                return outputText.Split(',').ToList();
+                return Dataset.Set
+                                .Where(x => x.Question.ToLower().Contains(question.ToLower()))
+                                .Select(x => x.Question)
+                                .ToList();
             });
         }
     }
 }
+

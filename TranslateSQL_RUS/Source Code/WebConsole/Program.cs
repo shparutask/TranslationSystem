@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using WebConsole;
 
 namespace Typeahead
 {
@@ -14,6 +15,7 @@ namespace Typeahead
     {
         public static void Main(string[] args)
         {
+            Dataset.GetDataset();
             CreateWebHostBuilder(args).Build().Run();
         }
 
