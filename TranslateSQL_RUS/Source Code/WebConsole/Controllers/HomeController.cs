@@ -138,7 +138,7 @@ namespace WebConsole.Controllers
                 result = await QueryResultCreator.CreateQueryResult(model.searchText);
 
             // For efficiency, the search call should be asynchronous, so use SearchAsync rather than Search.
-            model.resultList = result.Split('\r').ToList();
+            model.resultList = result.Split('\n').ToList();
 
             // This variable communicates the total number of pages to the view.
             model.pageCount = (model.resultList.Count + GlobalVariables.ResultsPerPage - 1) / GlobalVariables.ResultsPerPage;
